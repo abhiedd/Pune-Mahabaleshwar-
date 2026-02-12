@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#2c3e50">
     <title>Abhishek & Annyesha's Trip</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -11,9 +12,10 @@
             --accent: #e74c3c;
             --success: #27ae60;
             --warning: #f1c40f;
-            --bg: #f8f9fa;
+            --bg: #f0f2f5;
             --card: #ffffff;
             --text-muted: #6c757d;
+            --shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body {
@@ -22,349 +24,503 @@
             padding-bottom: 80px;
         }
 
+        /* --- PROGRESS BAR --- */
+        .progress-container {
+            position: fixed; top: 0; left: 0; width: 100%; height: 4px; background: #ddd; z-index: 1000;
+        }
+        .progress-bar {
+            height: 100%; background: var(--accent); width: 0%; transition: width 0.3s;
+        }
+
         /* --- HERO SECTION --- */
         .hero {
-            /* Reliable Unsplash Image */
-            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7)), 
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.8)), 
                         url('https://images.unsplash.com/photo-1595658658481-d53d3f999875?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');
             background-size: cover;
             background-position: center;
-            height: 260px;
+            height: 280px;
             display: flex;
-            align-items: flex-end;
+            flex-direction: column;
+            justify-content: flex-end;
             padding: 20px;
             color: white;
-            position: relative;
         }
-        .hero h1 { margin: 0; font-size: 1.8rem; text-shadow: 0 2px 5px rgba(0,0,0,0.5); }
-        .hero p { margin: 5px 0 0; font-size: 0.95rem; opacity: 0.95; font-weight: 500; }
-
-        .container { max-width: 800px; margin: 0 auto; padding: 15px; }
-
-        /* --- INTERACTIVE NOTEBOOK (PERSISTENT) --- */
-        .notebook {
-            background: var(--card);
-            border-radius: 16px;
-            padding: 20px;
-            margin-top: -30px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-            position: relative;
-            z-index: 10;
-            border-top: 5px solid var(--accent);
-        }
-        .notebook h2 { margin-top: 0; font-size: 1.1rem; display: flex; align-items: center; gap: 8px; color: #333; }
-        .notebook textarea {
-            width: 100%; height: 120px; border: 1px solid #e0e0e0;
-            border-radius: 10px; padding: 12px; font-family: inherit;
-            font-size: 1rem; resize: vertical; background: #fafafa;
-            transition: 0.2s;
-        }
-        .notebook textarea:focus { outline: none; border-color: var(--accent); background: #fff; box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1); }
-        .save-indicator { 
-            font-size: 0.8rem; color: var(--success); margin-top: 8px; 
-            opacity: 0; transition: opacity 0.5s; display: flex; align-items: center; gap: 5px;
-        }
-
-        /* --- CONTACTS GRID --- */
-        .contacts-grid {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; padding-top: 15px; border-top: 1px solid #f0f0f0;
-        }
-
-        /* --- ITINERARY CARDS --- */
-        .section-title {
-            margin: 30px 0 10px; font-size: 0.85rem; text-transform: uppercase; 
-            letter-spacing: 1.2px; color: var(--text-muted); font-weight: 700;
-        }
-        .card {
-            background: var(--card); border-radius: 16px; 
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04); overflow: hidden; margin-bottom: 15px;
-        }
-        .card-header {
-            padding: 12px 18px; background: #f8f9fa; color: #495057; border-bottom: 1px solid #eee;
-            display: flex; justify-content: space-between; align-items: center; font-weight: 600;
-        }
-        .card-header.blue { background: #e3f2fd; color: #0d47a1; }
-        .card-header.green { background: #e8f5e9; color: #1b5e20; }
-        .card-header.red { background: #ffebee; color: #b71c1c; }
+        .hero h1 { margin: 0; font-size: 2rem; text-shadow: 0 2px 5px rgba(0,0,0,0.5); }
+        .hero p { margin: 5px 0 0; font-size: 1rem; opacity: 0.9; font-weight: 500; }
         
+        /* --- ROUTE OVERVIEW --- */
+        .route-overview {
+            display: flex; justify-content: space-between; padding: 15px 20px;
+            background: #34495e; color: white; font-size: 0.85rem; overflow-x: auto;
+            white-space: nowrap; margin-bottom: 20px;
+        }
+        .route-step { display: flex; align-items: center; opacity: 0.8; }
+        .route-step.active { opacity: 1; font-weight: bold; color: var(--warning); }
+        .route-arrow { margin: 0 10px; opacity: 0.5; font-size: 0.7rem; }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 0 15px; }
+
+        /* --- NOTEBOOK --- */
+        .notebook {
+            background: var(--card); border-radius: 12px; padding: 20px;
+            margin-bottom: 25px; box-shadow: var(--shadow); border-left: 5px solid var(--accent);
+        }
+        .notebook h2 { margin: 0 0 10px; font-size: 1.1rem; display: flex; align-items: center; gap: 8px; }
+        .notebook textarea {
+            width: 100%; height: 80px; border: 1px solid #eee; border-radius: 8px;
+            padding: 10px; font-family: inherit; font-size: 0.95rem; resize: none; background: #fafafa;
+        }
+        .notebook textarea:focus { outline: none; border-color: var(--accent); background: white; }
+        
+        /* --- DAY CARD (COLLAPSIBLE) --- */
+        .day-card {
+            background: var(--card); border-radius: 12px; box-shadow: var(--shadow);
+            margin-bottom: 20px; overflow: hidden; transition: 0.3s;
+        }
+        .day-header {
+            padding: 15px 20px; background: white; border-bottom: 1px solid #f0f0f0;
+            display: flex; justify-content: space-between; align-items: center; cursor: pointer;
+        }
+        .day-header h3 { margin: 0; font-size: 1.1rem; color: var(--primary); }
+        .day-date { font-size: 0.85rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; }
+        .toggle-icon { transition: 0.3s; color: #ccc; }
+        .day-card.active .toggle-icon { transform: rotate(180deg); color: var(--primary); }
+        
+        .day-content { display: none; padding: 0; background: #fdfdfd; }
+        .day-card.active .day-content { display: block; }
+
+        /* --- TIMELINE ITEMS --- */
         .timeline-item {
-            padding: 18px; border-bottom: 1px solid #f0f0f0;
-            display: flex; gap: 15px;
+            position: relative; padding: 20px 20px 20px 75px; border-bottom: 1px solid #f0f0f0;
         }
         .timeline-item:last-child { border-bottom: none; }
-        .time-col { 
-            min-width: 60px; font-weight: 700; color: var(--primary); 
-            font-size: 0.9rem; text-align: right; margin-top: 2px;
-        }
-        .info-col { flex: 1; }
-        .info-col h3 { margin: 0 0 6px; font-size: 1.05rem; color: #212529; }
-        .info-col p { margin: 0 0 12px; font-size: 0.95rem; color: #666; line-height: 1.5; }
         
-        /* --- BUTTONS --- */
-        .btn-container { display: flex; flex-wrap: wrap; gap: 8px; }
+        /* Time Marker */
+        .time-badge {
+            position: absolute; left: 15px; top: 20px; width: 50px;
+            font-weight: 700; font-size: 0.85rem; text-align: right; color: var(--primary);
+        }
+        
+        /* Vertical Line */
+        .timeline-item::before {
+            content: ''; position: absolute; left: 70px; top: 0; bottom: 0;
+            width: 2px; background: #e9ecef;
+        }
+        .timeline-item::after {
+            content: ''; position: absolute; left: 65px; top: 24px;
+            width: 12px; height: 12px; background: white; border: 3px solid var(--accent);
+            border-radius: 50%; z-index: 2;
+        }
+
+        /* Content Layout */
+        .item-content h4 { margin: 0 0 5px; font-size: 1.05rem; }
+        .item-desc { margin: 0 0 10px; font-size: 0.9rem; color: #666; line-height: 1.5; }
+        
+        /* Images in Timeline */
+        .loc-img {
+            width: 100%; height: 140px; object-fit: cover; border-radius: 8px;
+            margin-bottom: 10px; display: block;
+        }
+
+        /* --- TRAVEL LEG (INFOGRAPHIC STYLE) --- */
+        .travel-leg {
+            background: #f8f9fa; border-radius: 8px; padding: 12px; margin: 10px 0;
+            border: 1px solid #e9ecef; display: flex; align-items: center; justify-content: space-between;
+        }
+        .leg-details { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+        .leg-route { font-size: 0.85rem; font-weight: 700; color: #555; display: flex; align-items: center; gap: 5px; }
+        .leg-meta { font-size: 0.75rem; color: #888; display: flex; gap: 10px; }
+        .leg-icon { font-size: 1.2rem; color: var(--primary); margin-right: 15px; width: 30px; text-align: center; }
+
+        /* --- BUTTONS & CHIPS --- */
+        .chip {
+            display: inline-block; padding: 4px 8px; border-radius: 4px;
+            font-size: 0.7rem; font-weight: 700; text-transform: uppercase; margin-bottom: 5px;
+        }
+        .chip.food { background: #fff3cd; color: #856404; }
+        .chip.travel { background: #d1ecf1; color: #0c5460; }
+        .chip.view { background: #d4edda; color: #155724; }
+        .chip.hotel { background: #e2e3e5; color: #383d41; }
+        .chip.warn { background: #f8d7da; color: #721c24; }
+
         .btn {
-            display: inline-flex; align-items: center; padding: 8px 12px; background: #f1f3f5; 
-            color: #495057; text-decoration: none; border-radius: 8px; 
-            font-size: 0.85rem; font-weight: 600; transition: 0.2s;
+            display: inline-flex; align-items: center; padding: 8px 12px;
+            background: white; border: 1px solid #ddd; border-radius: 20px;
+            font-size: 0.85rem; color: #333; text-decoration: none; margin-right: 5px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
         }
-        .btn:active { transform: scale(0.98); }
-        .btn i { margin-right: 6px; }
-        
-        .btn-map { background: #e3f2fd; color: #1976d2; }
-        .btn-food { background: #fff3e0; color: #e65100; }
-        .btn-call { background: #e8f5e9; color: #2e7d32; width: 100%; justify-content: center; }
-        .btn-shop { background: #f3e5f5; color: #7b1fa2; }
-        .btn-berry { background: #ffebee; color: #c62828; }
+        .btn i { margin-right: 6px; color: var(--accent); }
+
+        /* --- FLOATING ACTION BUTTON --- */
+        .fab {
+            position: fixed; bottom: 20px; right: 20px;
+            background: var(--accent); color: white; padding: 12px 20px;
+            border-radius: 30px; font-weight: bold; box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
+            text-decoration: none; z-index: 999; display: flex; align-items: center; gap: 8px;
+            transition: transform 0.2s;
+        }
+        .fab:active { transform: scale(0.95); }
 
         /* --- HIGHLIGHT BOX --- */
-        .highlight {
-            background: #fff9db; border: 1px dashed #fcc419; 
-            padding: 15px; border-radius: 10px; margin-top: 8px;
+        .highlight-box {
+            background: #fff3cd; border: 1px dashed #ffeeba; padding: 15px;
+            border-radius: 8px; margin-top: 10px; color: #856404;
         }
-        .alert { color: #c92a2a; font-weight: 700; font-size: 0.85rem; display: block; margin-top: 8px; }
 
     </style>
 </head>
 <body>
 
+    <div class="progress-container"><div class="progress-bar" id="progressBar"></div></div>
+
     <div class="hero">
-        <div>
-            <h1><i class="fas fa-mountain"></i> Pune & Mahabaleshwar</h1>
-            <p>Abhishek & Annyesha | Feb 13 - 17, 2026</p>
-        </div>
+        <h1>Pune & Mahabaleshwar</h1>
+        <p>Feb 13 - 17, 2026 • 5 Days</p>
+    </div>
+
+    <div class="route-overview">
+        <span class="route-step active">DEL</span>
+        <i class="fas fa-plane route-arrow"></i>
+        <span class="route-step">PNQ</span>
+        <i class="fas fa-bus route-arrow"></i>
+        <span class="route-step">Mahabaleshwar</span>
+        <i class="fas fa-bus route-arrow"></i>
+        <span class="route-step">PNQ</span>
+        <i class="fas fa-plane route-arrow"></i>
+        <span class="route-step">DEL</span>
     </div>
 
     <div class="container">
 
         <div class="notebook">
-            <h2><i class="fas fa-pen-fancy"></i> Trip Notes</h2>
-            <p style="font-size:0.85rem; color:#888; margin-bottom:10px;">Type below. Notes are auto-saved to your phone.</p>
-            <textarea id="tripNotes" placeholder="Type flight info, driver numbers, or shopping lists here..."></textarea>
-            <div id="saveMsg" class="save-indicator"><i class="fas fa-check-circle"></i> Saved to device</div>
-            
-            <div class="contacts-grid">
-                <a href="tel:+919922882044" class="btn btn-call"><i class="fas fa-taxi"></i> Aryan Tours</a>
-                <a href="tel:+918275928275" class="btn btn-call"><i class="fas fa-car"></i> Taxi Union</a>
+            <h2><i class="fas fa-pen-fancy"></i> Trip Companion</h2>
+            <textarea id="tripNotes" placeholder="Type notes here... (Auto-saves to phone)"></textarea>
+            <div style="margin-top: 10px; display: flex; gap: 10px;">
+                <a href="tel:+919922882044" class="btn"><i class="fas fa-taxi"></i> Aryan Tours</a>
+                <a href="tel:+918275928275" class="btn"><i class="fas fa-car"></i> Taxi Union</a>
             </div>
         </div>
 
-        <div class="section-title">Friday, Feb 13</div>
-        <div class="card">
-            <div class="card-header"><span>Arrival</span><span>Day 1</span></div>
-            <div class="timeline-item">
-                <div class="time-col">22:40</div>
-                <div class="info-col">
-                    <h3>Land at Pune (PNQ)</h3>
-                    <p>Flight 6E 933. Take a prepaid cab to Hadapsar.</p>
-                    <div class="btn-container">
-                        <a href="https://www.google.com/maps/search/?api=1&query=Pune+Airport" class="btn btn-map"><i class="fas fa-plane-arrival"></i> Airport Map</a>
+        <div class="day-card active" id="day1">
+            <div class="day-header" onclick="toggleDay('day1')">
+                <h3>Arrival</h3>
+                <span class="day-date">FRI 13</span>
+                <i class="fas fa-chevron-down toggle-icon"></i>
+            </div>
+            <div class="day-content">
+                <div class="timeline-item">
+                    <span class="time-badge">22:40</span>
+                    <div class="item-content">
+                        <span class="chip travel">Flight</span>
+                        <h4>Land at Pune (PNQ)</h4>
+                        <p class="item-desc">IndiGo 6E 933. Prepaid cab to Hadapsar.</p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Pune+Airport" class="btn"><i class="fas fa-map"></i> Airport</a>
                     </div>
                 </div>
-            </div>
-            <div class="timeline-item">
-                <div class="time-col">23:30</div>
-                <div class="info-col">
-                    <h3>Check-in: Treebo Trend Cocostay</h3>
-                    <p>Hadapsar. Keep your ID handy.</p>
-                    <div class="btn-container">
-                        <a href="https://www.google.com/maps/search/?api=1&query=Treebo+Trend+Cocostay+Hadapsar" class="btn btn-map"><i class="fas fa-bed"></i> Hotel Pin</a>
+                
+                <div class="timeline-item">
+                    <span class="time-badge">23:00</span>
+                    <div class="item-content">
+                        <div class="travel-leg">
+                            <i class="fas fa-taxi leg-icon"></i>
+                            <div class="leg-details">
+                                <span class="leg-route">Airport → Hadapsar</span>
+                                <span class="leg-meta">~11 km • ~35 mins (Night Traffic)</span>
+                            </div>
+                            <a href="https://www.google.com/maps/dir/?api=1&origin=Pune+Airport&destination=Treebo+Trend+Cocostay+Hadapsar" class="btn"><i class="fas fa-location-arrow"></i></a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="section-title">Saturday, Feb 14</div>
-        <div class="card">
-            <div class="card-header"><span>The Date Day</span><span>Day 2</span></div>
-            <div class="timeline-item">
-                <div class="time-col">09:30</div>
-                <div class="info-col">
-                    <h3>Breakfast: Treebo</h3>
-                    <p>Relaxed start at the hotel.</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="time-col">11:00</div>
-                <div class="info-col">
-                    <h3>Mastani Lake & Dive Ghat</h3>
-                    <p>Scenic drive for valley views.</p>
-                    <div class="btn-container">
-                        <a href="https://www.google.com/maps/search/?api=1&query=Mastani+Lake+Pune" class="btn btn-map"><i class="fas fa-water"></i> Lake Map</a>
-                    </div>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="time-col">13:30</div>
-                <div class="info-col">
-                    <h3>Lunch: The Daily All Day</h3>
-                    <p>Koregaon Park. Aesthetic vibes & great cocktails.</p>
-                    <div class="btn-container">
-                        <a href="https://www.google.com/maps/search/?api=1&query=The+Daily+All+Day+Pune" class="btn btn-food"><i class="fas fa-utensils"></i> Directions</a>
-                    </div>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="time-col">16:30</div>
-                <div class="info-col">
-                    <h3>Seasons Mall (Movie)</h3>
-                    <p>Hadapsar. Catch a movie & shop.</p>
-                    <div class="btn-container">
-                        <a href="https://www.google.com/maps/search/?api=1&query=Seasons+Mall+Pune" class="btn btn-map"><i class="fas fa-film"></i> Mall</a>
-                    </div>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="time-col">21:00</div>
-                <div class="info-col">
-                    <h3>Dinner: German Bakery</h3>
-                    <p>Koregaon Park. Iconic spot to end the night.</p>
-                    <div class="btn-container">
-                        <a href="https://www.google.com/maps/search/?api=1&query=German+Bakery+Koregaon+Park" class="btn btn-food"><i class="fas fa-coffee"></i> Bakery</a>
+                <div class="timeline-item">
+                    <span class="time-badge">23:35</span>
+                    <div class="item-content">
+                        <span class="chip hotel">Stay</span>
+                        <h4>Check-in: Treebo Trend Cocostay</h4>
+                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80" class="loc-img" alt="Hotel">
+                        <p class="item-desc">Keep ID handy. Relax for the night.</p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Treebo+Trend+Cocostay+Hadapsar" class="btn"><i class="fas fa-bed"></i> Map</a>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="section-title">Sunday, Feb 15</div>
-        <div class="card">
-            <div class="card-header blue"><span>To The Hills</span><span>Day 3</span></div>
-            <div class="timeline-item">
-                <div class="time-col">11:15</div>
-                <div class="info-col">
-                    <h3>Boarding: Navle Bridge</h3>
-                    <p><strong>Neeta Travels (Sleeper)</strong><br>Spot: Opp. Hotel Ganga. Bus departs 11:55 AM.</p>
-                    <div class="btn-container">
-                        <a href="https://www.google.com/maps/search/?api=1&query=Navle+Bridge+Pune" class="btn btn-map"><i class="fas fa-bus"></i> Boarding</a>
+        <div class="day-card" id="day2">
+            <div class="day-header" onclick="toggleDay('day2')">
+                <h3>The Date Day</h3>
+                <span class="day-date">SAT 14</span>
+                <i class="fas fa-chevron-down toggle-icon"></i>
+            </div>
+            <div class="day-content">
+                <div class="timeline-item">
+                    <span class="time-badge">11:00</span>
+                    <div class="item-content">
+                        <span class="chip view">Viewpoint</span>
+                        <h4>Mastani Lake & Dive Ghat</h4>
+                        <img src="https://images.unsplash.com/photo-1621252179027-94459d278660?auto=format&fit=crop&w=600&q=80" class="loc-img" alt="Lake">
+                        <p class="item-desc">Scenic drive. Great valley views.</p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Mastani+Lake+Pune" class="btn"><i class="fas fa-map-marker-alt"></i> Lake</a>
                     </div>
                 </div>
-            </div>
-            <div class="timeline-item">
-                <div class="time-col">15:45</div>
-                <div class="info-col">
-                    <h3>Check-in: Regenta Place</h3>
-                    <p>Green Leaf Resort, Rengadi.</p>
-                    <div class="btn-container">
-                        <a href="https://www.google.com/maps/search/?api=1&query=Regenta+Place+Green+Leaf+Mahabaleshwar" class="btn btn-map"><i class="fas fa-hotel"></i> Hotel</a>
+
+                <div class="timeline-item">
+                    <span class="time-badge">13:30</span>
+                    <div class="item-content">
+                        <span class="chip food">Lunch</span>
+                        <h4>The Daily All Day</h4>
+                        <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=600&q=80" class="loc-img" alt="Cafe">
+                        <p class="item-desc">Koregaon Park. Aesthetic vibes & cocktails.</p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=The+Daily+All+Day+Pune" class="btn"><i class="fas fa-utensils"></i> Navigate</a>
                     </div>
                 </div>
-            </div>
-            <div class="timeline-item">
-                <div class="time-col">17:30</div>
-                <div class="info-col">
-                    <h3>Venna Lake & Town Bazaar</h3>
-                    <p>Sunset boating followed by shopping at the main market.</p>
-                    <div class="btn-container">
-                        <a href="https://www.google.com/maps/search/?api=1&query=Venna+Lake+Mahabaleshwar" class="btn btn-map"><i class="fas fa-ship"></i> Lake</a>
-                        <a href="https://www.google.com/maps/search/?api=1&query=Mahabaleshwar+Market" class="btn btn-shop"><i class="fas fa-shopping-bag"></i> Market</a>
+
+                <div class="timeline-item">
+                    <span class="time-badge">15:00</span>
+                    <div class="item-content">
+                        <div class="travel-leg">
+                            <i class="fas fa-car leg-icon"></i>
+                            <div class="leg-details">
+                                <span class="leg-route">Koregaon Park → Seasons Mall</span>
+                                <span class="leg-meta">~8 km • ~25 mins</span>
+                            </div>
+                            <a href="https://www.google.com/maps/dir/?api=1&origin=The+Daily+All+Day+Pune&destination=Seasons+Mall+Hadapsar" class="btn"><i class="fas fa-location-arrow"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <span class="time-badge">16:30</span>
+                    <div class="item-content">
+                        <span class="chip view">Activity</span>
+                        <h4>Seasons Mall (Movie)</h4>
+                        <p class="item-desc">Catch a movie & shop.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <span class="time-badge">21:00</span>
+                    <div class="item-content">
+                        <span class="chip food">Dinner</span>
+                        <h4>German Bakery</h4>
+                        <p class="item-desc">Iconic Kheema Pav & Red Velvet Cake.</p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=German+Bakery+Koregaon+Park" class="btn"><i class="fas fa-coffee"></i> Bakery</a>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="section-title">Monday, Feb 16</div>
-        <div class="card">
-            <div class="card-header green"><span>Mahabaleshwar</span><span>Day 4</span></div>
-            <div class="timeline-item">
-                <div class="time-col">10:00</div>
-                <div class="info-col">
-                    <h3>Arthur's Seat & Points</h3>
-                    <p>The "Queen of Points" & Elephant's Head Point.</p>
-                    <div class="btn-container">
-                        <a href="https://www.google.com/maps/search/?api=1&query=Arthur's+Seat+Point+Mahabaleshwar" class="btn btn-map"><i class="fas fa-mountain"></i> Viewpoint</a>
+        <div class="day-card" id="day3">
+            <div class="day-header" onclick="toggleDay('day3')">
+                <h3>To The Hills</h3>
+                <span class="day-date">SUN 15</span>
+                <i class="fas fa-chevron-down toggle-icon"></i>
+            </div>
+            <div class="day-content">
+                <div class="timeline-item">
+                    <span class="time-badge">11:15</span>
+                    <div class="item-content">
+                        <span class="chip warn">Important</span>
+                        <h4>Boarding: Navle Bridge</h4>
+                        <p class="item-desc"><strong>Neeta Travels (Sleeper)</strong>. Spot: Opp. Hotel Ganga.</p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Navle+Bridge+Pune" class="btn"><i class="fas fa-bus"></i> Spot</a>
                     </div>
                 </div>
-            </div>
-            <div class="timeline-item" style="background: #fff5f5;">
-                <div class="time-col">12:30</div>
-                <div class="info-col">
-                    <h3>🍓 Strawberry Picking</h3>
-                    <p>Visit a farm (e.g., Laxmi Strawberry Farm) near Mapro.</p>
-                    <div class="btn-container">
-                        <a href="https://www.google.com/maps/search/?api=1&query=Strawberry+Farm+Mahabaleshwar" class="btn btn-berry"><i class="fas fa-leaf"></i> Find Farms</a>
+
+                <div class="timeline-item">
+                    <span class="time-badge">11:55</span>
+                    <div class="item-content">
+                        <div class="travel-leg">
+                            <i class="fas fa-bus leg-icon"></i>
+                            <div class="leg-details">
+                                <span class="leg-route">Pune → Mahabaleshwar</span>
+                                <span class="leg-meta">~120 km • ~3 hrs 10 mins</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="timeline-item">
-                <div class="time-col">13:30</div>
-                <div class="info-col">
-                    <h3>Lunch: Mapro Garden</h3>
-                    <p>Wood-fired Pizza & Strawberry Cream.</p>
-                    <div class="btn-container">
-                        <a href="https://www.google.com/maps/search/?api=1&query=Mapro+Garden" class="btn btn-food"><i class="fas fa-pizza-slice"></i> Mapro</a>
+
+                <div class="timeline-item">
+                    <span class="time-badge">15:45</span>
+                    <div class="item-content">
+                        <span class="chip hotel">Check-in</span>
+                        <h4>Regenta Place Green Leaf</h4>
+                        <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=600&q=80" class="loc-img" alt="Resort">
+                        <p class="item-desc">Rengadi. Relax & freshen up.</p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Regenta+Place+Green+Leaf+Mahabaleshwar" class="btn"><i class="fas fa-hotel"></i> Map</a>
                     </div>
                 </div>
-            </div>
-            <div class="timeline-item">
-                <div class="time-col">20:30</div>
-                <div class="info-col">
-                    <h3>Dinner: Farmhouse Bistro</h3>
-                    <p>Open-air dining with a great vibe.</p>
-                    <div class="btn-container">
-                        <a href="https://www.google.com/maps/search/?api=1&query=Farmhouse+Bistro+Mahabaleshwar" class="btn btn-food"><i class="fas fa-wine-glass"></i> Bistro</a>
+
+                <div class="timeline-item">
+                    <span class="time-badge">17:30</span>
+                    <div class="item-content">
+                        <span class="chip view">Sunset</span>
+                        <h4>Venna Lake & Market</h4>
+                        <img src="https://images.unsplash.com/photo-1544473244-f6895e672d25?auto=format&fit=crop&w=600&q=80" class="loc-img" alt="Boating">
+                        <p class="item-desc">Boating followed by shopping at Town Bazaar.</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="section-title">Tuesday, Feb 17</div>
-        <div class="card">
-            <div class="card-header red"><span>Return Journey</span><span>Day 5</span></div>
-            <div class="timeline-item">
-                <div class="time-col">11:30</div>
-                <div class="info-col">
-                    <h3>Return Bus</h3>
-                    <p>Boarding: The Byke Shanti Villa. Drop: Navle Bridge (3:20 PM).</p>
-                    <div class="btn-container">
-                        <a href="https://www.google.com/maps/search/?api=1&query=The+Byke+Shanti+Villa" class="btn btn-map"><i class="fas fa-bus"></i> Boarding</a>
+        <div class="day-card" id="day4">
+            <div class="day-header" onclick="toggleDay('day4')">
+                <h3>Mahabaleshwar</h3>
+                <span class="day-date">MON 16</span>
+                <i class="fas fa-chevron-down toggle-icon"></i>
+            </div>
+            <div class="day-content">
+                <div class="timeline-item">
+                    <span class="time-badge">10:00</span>
+                    <div class="item-content">
+                        <span class="chip view">Sightseeing</span>
+                        <h4>Arthur's Seat</h4>
+                        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80" class="loc-img" alt="Mountains">
+                        <p class="item-desc">Spectacular views of the Konkan valley.</p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Arthur's+Seat+Mahabaleshwar" class="btn"><i class="fas fa-mountain"></i> Map</a>
                     </div>
                 </div>
-            </div>
-            <div class="timeline-item" style="background: #fff9db;">
-                <div class="time-col">16:30</div>
-                <div class="info-col">
-                    <div class="highlight">
-                        <h3>📍 Loni Kalbhor Visit</h3>
-                        <p>Visit family/friends. Dinner nearby.</p>
-                        <span class="alert">⚠️ LEAVE BY 7:30 PM SHARP</span>
-                    </div>
-                    <div class="btn-container" style="margin-top:10px;">
-                        <a href="https://www.google.com/maps/search/?api=1&query=Loni+Kalbhor" class="btn btn-map"><i class="fas fa-map-marker-alt"></i> Loni</a>
+
+                <div class="timeline-item">
+                    <span class="time-badge">12:30</span>
+                    <div class="item-content">
+                        <span class="chip food">Activity</span>
+                        <h4>🍓 Strawberry Picking</h4>
+                        <p class="item-desc">Visit a farm near Mapro (e.g., Laxmi Farm).</p>
                     </div>
                 </div>
-            </div>
-            <div class="timeline-item">
-                <div class="time-col">23:15</div>
-                <div class="info-col">
-                    <h3>Flight to Delhi</h3>
-                    <p>IndiGo 6E 2278.</p>
-                    <div class="btn-container">
-                        <a href="https://www.google.com/maps/search/?api=1&query=Pune+Airport" class="btn btn-map"><i class="fas fa-plane-departure"></i> Airport</a>
+
+                <div class="timeline-item">
+                    <span class="time-badge">13:30</span>
+                    <div class="item-content">
+                        <span class="chip food">Lunch</span>
+                        <h4>Mapro Garden</h4>
+                        <img src="https://images.unsplash.com/photo-1519625346618-20216149497e?auto=format&fit=crop&w=600&q=80" class="loc-img" alt="Mapro">
+                        <p class="item-desc">Wood-fired Pizza & Strawberry Cream.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <span class="time-badge">20:30</span>
+                    <div class="item-content">
+                        <span class="chip food">Dinner</span>
+                        <h4>Farmhouse Bistro</h4>
+                        <p class="item-desc">Open-air dining with a great vibe.</p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Farmhouse+Bistro+Mahabaleshwar" class="btn"><i class="fas fa-wine-glass"></i> Map</a>
                     </div>
                 </div>
             </div>
         </div>
 
-        <p style="text-align:center; color:#adb5bd; font-size:0.8rem; margin-top:30px; margin-bottom: 20px;">Safe Travels! ✈️</p>
+        <div class="day-card" id="day5">
+            <div class="day-header" onclick="toggleDay('day5')">
+                <h3>Return Journey</h3>
+                <span class="day-date">TUE 17</span>
+                <i class="fas fa-chevron-down toggle-icon"></i>
+            </div>
+            <div class="day-content">
+                <div class="timeline-item">
+                    <span class="time-badge">11:30</span>
+                    <div class="item-content">
+                        <span class="chip travel">Bus</span>
+                        <h4>Depart for Pune</h4>
+                        <p class="item-desc">Boarding: The Byke Shanti Villa.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <span class="time-badge">15:20</span>
+                    <div class="item-content">
+                        <div class="travel-leg">
+                            <i class="fas fa-map-marker-alt leg-icon"></i>
+                            <div class="leg-details">
+                                <span class="leg-route">Navle Bridge Drop</span>
+                                <span class="leg-meta">Arrive in Pune</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <span class="time-badge">16:30</span>
+                    <div class="item-content">
+                        <div class="highlight-box">
+                            <span class="chip warn">Priority</span>
+                            <h4>📍 Loni Kalbhor Visit</h4>
+                            <p class="item-desc">Visit family/friends. Dinner nearby.</p>
+                            <strong style="display:block; margin-top:5px; color:#721c24;">⚠️ LEAVE BY 7:30 PM SHARP</strong>
+                            <a href="https://www.google.com/maps/search/?api=1&query=Loni+Kalbhor+Pune" class="btn" style="margin-top:10px;"><i class="fas fa-map"></i> Loni</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <span class="time-badge">19:30</span>
+                    <div class="item-content">
+                        <div class="travel-leg">
+                            <i class="fas fa-car leg-icon"></i>
+                            <div class="leg-details">
+                                <span class="leg-route">Loni → Airport</span>
+                                <span class="leg-meta">~15 km • ~45-60 mins (Traffic!)</span>
+                            </div>
+                            <a href="https://www.google.com/maps/dir/?api=1&origin=Loni+Kalbhor&destination=Pune+Airport" class="btn"><i class="fas fa-location-arrow"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <span class="time-badge">23:15</span>
+                    <div class="item-content">
+                        <span class="chip travel">Flight</span>
+                        <h4>Flight to Delhi</h4>
+                        <p class="item-desc">IndiGo 6E 2278.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
 
-    <script>
-        const noteArea = document.getElementById('tripNotes');
-        const saveMsg = document.getElementById('saveMsg');
+    <a href="javascript:scrollToActiveDay()" class="fab">
+        <i class="fas fa-calendar-day"></i> Today
+    </a>
 
-        // Load saved notes from LocalStorage on page load
-        if(localStorage.getItem('myTripNotes')) {
-            noteArea.value = localStorage.getItem('myTripNotes');
+    <script>
+        // Collapsible Days Logic
+        function toggleDay(id) {
+            const card = document.getElementById(id);
+            const allCards = document.querySelectorAll('.day-card');
+            
+            // Optional: Close others when opening one?
+            // allCards.forEach(c => { if(c !== card) c.classList.remove('active'); });
+
+            card.classList.toggle('active');
         }
 
-        // Save to LocalStorage whenever the user types
-        noteArea.addEventListener('input', function() {
-            localStorage.setItem('myTripNotes', noteArea.value);
-            
-            // Visual feedback
-            saveMsg.style.opacity = '1';
-            setTimeout(() => { saveMsg.style.opacity = '0'; }, 2000);
+        // Persistent Notes
+        const noteArea = document.getElementById('tripNotes');
+        if(localStorage.getItem('tripNotes')) {
+            noteArea.value = localStorage.getItem('tripNotes');
+        }
+        noteArea.addEventListener('input', () => {
+            localStorage.setItem('tripNotes', noteArea.value);
         });
+
+        // Scroll to Today (Mock Logic for Demo)
+        function scrollToActiveDay() {
+            // In a real app, you'd check new Date()
+            // For now, let's just scroll to Day 2 or open all
+            const todayCard = document.getElementById('day2'); 
+            todayCard.classList.add('active');
+            todayCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // Progress Bar on Scroll
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("progressBar").style.width = scrolled + "%";
+        };
     </script>
 </body>
 </html>
