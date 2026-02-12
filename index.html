@@ -21,12 +21,13 @@
             padding-bottom: 80px;
         }
 
-        /* --- HERO SECTION --- */
+        /* --- RESTORED HERO SECTION --- */
         .hero {
             background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7)), 
-                        url('https://images.unsplash.com/photo-1626014303757-0fc5868214a1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');
+                        url('https://images.unsplash.com/photo-1595658658481-d53d3f999875?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');
             background-size: cover;
             background-position: center;
+            background-color: #2c3e50; /* Fallback color */
             height: 250px;
             display: flex;
             align-items: flex-end;
@@ -59,7 +60,7 @@
         .notebook textarea:focus { outline: none; border-color: var(--accent); background: #fff; }
         .save-indicator { font-size: 0.8rem; color: var(--success); margin-top: 5px; opacity: 0; transition: opacity 0.5s; }
 
-        /* --- ITINERARY CARDS --- */
+        /* --- RESTORED ITINERARY CARDS --- */
         .section-title {
             margin: 25px 0 10px; font-size: 0.9rem; text-transform: uppercase; 
             letter-spacing: 1px; color: #888; font-weight: 700;
@@ -139,8 +140,8 @@
                 <div class="time-col">22:40</div>
                 <div class="info-col">
                     <h3>Land at Pune (PNQ)</h3>
-                    <p>Flight 6E 933. Take a prepaid cab to Hadapsar.</p>
-                    <a href="https://goo.gl/maps/xyz" class="btn btn-map"><i class="fas fa-plane"></i> Airport</a>
+                    [span_0](start_span)<p>Flight 6E 933[span_0](end_span). Take a prepaid cab to Hadapsar.</p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Pune+Airport" class="btn btn-map"><i class="fas fa-plane"></i> Airport</a>
                 </div>
             </div>
             <div class="timeline-item">
@@ -148,7 +149,7 @@
                 <div class="info-col">
                     <h3>Check-in: Treebo Trend Cocostay</h3>
                     <p>Hadapsar. Keep your ID handy.</p>
-                    <a href="https://goo.gl/maps/xyz" class="btn btn-map"><i class="fas fa-hotel"></i> Hotel Pin</a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Treebo+Trend+Cocostay+Hadapsar" class="btn btn-map"><i class="fas fa-hotel"></i> Hotel Pin</a>
                 </div>
             </div>
         </div>
@@ -161,7 +162,7 @@
                 <div class="info-col">
                     <h3>Aga Khan Palace</h3>
                     <p>Morning history walk & photos.</p>
-                    <a href="https://goo.gl/maps/xyz" class="btn btn-map">Map</a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Aga+Khan+Palace+Pune" class="btn btn-map">Map</a>
                 </div>
             </div>
             <div class="timeline-item">
@@ -169,7 +170,7 @@
                 <div class="info-col">
                     <h3>Mastani Lake & Dive Ghat</h3>
                     <p>Sunset drive. Great views of the valley.</p>
-                    <a href="https://goo.gl/maps/xyz" class="btn btn-map">Lake Map</a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Mastani+Lake+Pune" class="btn btn-map">Lake Map</a>
                 </div>
             </div>
             <div class="timeline-item">
@@ -177,6 +178,7 @@
                 <div class="info-col">
                     <h3>Dinner: Seasons Mall</h3>
                     <p>Relaxed evening in Hadapsar.</p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Seasons+Mall+Pune" class="btn btn-map">Mall Map</a>
                 </div>
             </div>
         </div>
@@ -189,7 +191,7 @@
                 <div class="info-col">
                     <h3>Boarding: Navle Bridge</h3>
                     <p><strong>Neeta Travels (Sleeper)</strong><br>Spot: Opp. Hotel Ganga.</p>
-                    <a href="https://goo.gl/maps/xyz" class="btn btn-map">Boarding Point</a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Navle+Bridge+Pune" class="btn btn-map">Boarding Point</a>
                 </div>
             </div>
             <div class="timeline-item">
@@ -197,7 +199,7 @@
                 <div class="info-col">
                     <h3>Check-in: Regenta Place</h3>
                     <p>Green Leaf Resort, Rengadi.</p>
-                    <a href="https://goo.gl/maps/xyz" class="btn btn-map">Hotel Map</a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Regenta+Place+Green+Leaf+Mahabaleshwar" class="btn btn-map">Hotel Map</a>
                 </div>
             </div>
         </div>
@@ -210,6 +212,7 @@
                 <div class="info-col">
                     <h3>Arthur's Seat</h3>
                     <p>The best viewpoint in Mahabaleshwar.</p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Arthur's+Seat+Mahabaleshwar" class="btn btn-map">Map</a>
                 </div>
             </div>
             <div class="timeline-item" style="background: #fff5f5;">
@@ -217,7 +220,7 @@
                 <div class="info-col">
                     <h3>🍓 Strawberry Picking</h3>
                     <p>Stop at a farm on the way to Mapro (e.g., Laxmi Strawberry Farm).</p>
-                    <a href="https://www.google.com/maps/search/Strawberry+Farm+Mahabaleshwar" class="btn btn-berry"><i class="fas fa-leaf"></i> Find Farms</a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Strawberry+Farm+Mahabaleshwar" class="btn btn-berry"><i class="fas fa-leaf"></i> Find Farms</a>
                 </div>
             </div>
             <div class="timeline-item">
@@ -225,7 +228,7 @@
                 <div class="info-col">
                     <h3>Lunch: Mapro Garden</h3>
                     <p>Must eat: Strawberry Cream & Pizza.</p>
-                    <a href="https://goo.gl/maps/xyz" class="btn btn-map">Mapro</a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Mapro+Garden+Mahabaleshwar" class="btn btn-map">Mapro</a>
                 </div>
             </div>
         </div>
@@ -237,7 +240,8 @@
                 <div class="time-col">11:30</div>
                 <div class="info-col">
                     <h3>Return Bus</h3>
-                    <p>Boarding: The Byke Shanti Villa.<br>Drop: Navle Bridge (3:20 PM).</p>
+                    [span_1](start_span)<p>Boarding: The Byke Shanti Villa[span_1](end_span)[span_2](start_span).<br>Drop: Navle Bridge (3:20 PM)[span_2](end_span).</p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=The+Byke+Shanti+Villa+Mahabaleshwar" class="btn btn-map">Boarding Point</a>
                 </div>
             </div>
             <div class="timeline-item" style="background: #fffdf0;">
@@ -248,7 +252,7 @@
                         <p>Visit family/friends. Dinner nearby.</p>
                         <span class="alert">⚠️ LEAVE BY 7:30 PM SHARP</span>
                     </div>
-                    <a href="https://goo.gl/maps/xyz" class="btn btn-map" style="margin-top:5px;">Loni Location</a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Loni+Kalbhor+Pune" class="btn btn-map" style="margin-top:5px;">Loni Location</a>
                 </div>
             </div>
             <div class="timeline-item">
@@ -256,6 +260,7 @@
                 <div class="info-col">
                     <h3>Flight to Delhi</h3>
                     <p>IndiGo 6E 2278.</p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Pune+Airport" class="btn btn-map"><i class="fas fa-plane"></i> Airport</a>
                 </div>
             </div>
         </div>
