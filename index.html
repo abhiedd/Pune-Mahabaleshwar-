@@ -1,767 +1,370 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="theme-color" content="#0b0f14" />
-  <title>Pune + Mahabaleshwar Itinerary (Feb 13–17, 2026)</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Abhishek & Annyesha's Trip</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --accent: #e74c3c;
+            --success: #27ae60;
+            --warning: #f1c40f;
+            --bg: #f8f9fa;
+            --card: #ffffff;
+            --text-muted: #6c757d;
+        }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0; padding: 0; background: var(--bg); color: var(--primary);
+            padding-bottom: 80px;
+        }
 
-  <style>
-    :root{
-      --bg:#0b0f14;
-      --card:#111826;
-      --muted:#95a3b8;
-      --text:#e8eef8;
-      --accent:#7c5cff;
-      --accent2:#18c37e;
-      --warn:#ffb020;
-      --line:#223046;
-      --chip:#192235;
-      --shadow: 0 12px 30px rgba(0,0,0,.35);
-      --radius: 18px;
+        /* --- HERO SECTION --- */
+        .hero {
+            /* Reliable Unsplash Image */
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1595658658481-d53d3f999875?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 260px;
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+            color: white;
+            position: relative;
+        }
+        .hero h1 { margin: 0; font-size: 1.8rem; text-shadow: 0 2px 5px rgba(0,0,0,0.5); }
+        .hero p { margin: 5px 0 0; font-size: 0.95rem; opacity: 0.95; font-weight: 500; }
 
-      --ok: rgba(24,195,126,.15);
-      --okb: rgba(24,195,126,.25);
+        .container { max-width: 800px; margin: 0 auto; padding: 15px; }
 
-      --td: rgba(124,92,255,.18);
-      --tdb: rgba(124,92,255,.32);
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      background:
-        radial-gradient(1200px 900px at 20% -10%, rgba(124,92,255,.20), transparent 55%),
-        radial-gradient(1000px 800px at 90% 0%, rgba(24,195,126,.16), transparent 50%),
-        var(--bg);
-      color:var(--text);
-      line-height:1.45;
-    }
-    a{color:inherit}
-    .wrap{max-width:1100px;margin:0 auto;padding:18px}
-    .hero{
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:var(--radius);
-      box-shadow: var(--shadow);
-      padding:16px;
-      overflow:hidden;
-      position:relative;
-    }
-    .hero h1{margin:0 0 8px;font-size:26px;letter-spacing:.2px}
-    .sub{color:var(--muted);margin:0 0 12px}
-    .chips{display:flex;flex-wrap:wrap;gap:8px}
-    .chip{
-      background:rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.07);
-      padding:8px 10px;
-      border-radius:999px;
-      font-size:12px;
-      color:var(--muted);
-    }
+        /* --- INTERACTIVE NOTEBOOK (PERSISTENT) --- */
+        .notebook {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: -30px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            position: relative;
+            z-index: 10;
+            border-top: 5px solid var(--accent);
+        }
+        .notebook h2 { margin-top: 0; font-size: 1.1rem; display: flex; align-items: center; gap: 8px; color: #333; }
+        .notebook textarea {
+            width: 100%; height: 120px; border: 1px solid #e0e0e0;
+            border-radius: 10px; padding: 12px; font-family: inherit;
+            font-size: 1rem; resize: vertical; background: #fafafa;
+            transition: 0.2s;
+        }
+        .notebook textarea:focus { outline: none; border-color: var(--accent); background: #fff; box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1); }
+        .save-indicator { 
+            font-size: 0.8rem; color: var(--success); margin-top: 8px; 
+            opacity: 0; transition: opacity 0.5s; display: flex; align-items: center; gap: 5px;
+        }
 
-    .topGrid{
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap:14px;
-      align-items:stretch;
-      margin-top:10px;
-    }
-    @media (max-width:920px){ .topGrid{grid-template-columns:1fr} }
+        /* --- CONTACTS GRID --- */
+        .contacts-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; padding-top: 15px; border-top: 1px solid #f0f0f0;
+        }
 
-    .miniCard{
-      background:rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:var(--radius);
-      padding:14px;
-      box-shadow: var(--shadow);
-    }
-    .miniCard h3{margin:0 0 6px;font-size:14px}
-    .miniCard p{margin:0;color:var(--muted);font-size:13px}
+        /* --- ITINERARY CARDS --- */
+        .section-title {
+            margin: 30px 0 10px; font-size: 0.85rem; text-transform: uppercase; 
+            letter-spacing: 1.2px; color: var(--text-muted); font-weight: 700;
+        }
+        .card {
+            background: var(--card); border-radius: 16px; 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04); overflow: hidden; margin-bottom: 15px;
+        }
+        .card-header {
+            padding: 12px 18px; background: #f8f9fa; color: #495057; border-bottom: 1px solid #eee;
+            display: flex; justify-content: space-between; align-items: center; font-weight: 600;
+        }
+        .card-header.blue { background: #e3f2fd; color: #0d47a1; }
+        .card-header.green { background: #e8f5e9; color: #1b5e20; }
+        .card-header.red { background: #ffebee; color: #b71c1c; }
+        
+        .timeline-item {
+            padding: 18px; border-bottom: 1px solid #f0f0f0;
+            display: flex; gap: 15px;
+        }
+        .timeline-item:last-child { border-bottom: none; }
+        .time-col { 
+            min-width: 60px; font-weight: 700; color: var(--primary); 
+            font-size: 0.9rem; text-align: right; margin-top: 2px;
+        }
+        .info-col { flex: 1; }
+        .info-col h3 { margin: 0 0 6px; font-size: 1.05rem; color: #212529; }
+        .info-col p { margin: 0 0 12px; font-size: 0.95rem; color: #666; line-height: 1.5; }
+        
+        /* --- BUTTONS --- */
+        .btn-container { display: flex; flex-wrap: wrap; gap: 8px; }
+        .btn {
+            display: inline-flex; align-items: center; padding: 8px 12px; background: #f1f3f5; 
+            color: #495057; text-decoration: none; border-radius: 8px; 
+            font-size: 0.85rem; font-weight: 600; transition: 0.2s;
+        }
+        .btn:active { transform: scale(0.98); }
+        .btn i { margin-right: 6px; }
+        
+        .btn-map { background: #e3f2fd; color: #1976d2; }
+        .btn-food { background: #fff3e0; color: #e65100; }
+        .btn-call { background: #e8f5e9; color: #2e7d32; width: 100%; justify-content: center; }
+        .btn-shop { background: #f3e5f5; color: #7b1fa2; }
+        .btn-berry { background: #ffebee; color: #c62828; }
 
-    .btnRow{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-    .btn{
-      display:inline-flex;align-items:center;gap:8px;
-      padding:10px 12px;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.05);
-      text-decoration:none;
-      font-weight:700;
-      font-size:13px;
-      transition:.18s ease;
-      cursor:pointer;
-      user-select:none;
-    }
-    .btn:hover{transform:translateY(-1px);background:rgba(255,255,255,.08)}
-    .btn.primary{background:linear-gradient(135deg, rgba(124,92,255,.9), rgba(24,195,126,.65)); border:none}
-    .btn.ghost{background:transparent}
+        /* --- HIGHLIGHT BOX --- */
+        .highlight {
+            background: #fff9db; border: 1px dashed #fcc419; 
+            padding: 15px; border-radius: 10px; margin-top: 8px;
+        }
+        .alert { color: #c92a2a; font-weight: 700; font-size: 0.85rem; display: block; margin-top: 8px; }
 
-    .sectionTitle{
-      margin:18px 0 10px;
-      display:flex;align-items:center;gap:10px;
-      color:#dbe6ff;
-      font-size:13px;
-      letter-spacing:.4px;
-      text-transform:uppercase;
-    }
-    .sectionTitle:before{
-      content:"";
-      width:10px;height:10px;border-radius:3px;
-      background:linear-gradient(135deg,var(--accent),var(--accent2));
-      display:inline-block;
-    }
-
-    /* Day cards */
-    .day{
-      border:1px solid rgba(255,255,255,.08);
-      background:rgba(255,255,255,.03);
-      border-radius:var(--radius);
-      overflow:hidden;
-      box-shadow: var(--shadow);
-      margin-bottom:12px;
-    }
-    .dayHeader{
-      display:flex;justify-content:space-between;align-items:flex-start;
-      padding:14px 14px;
-      gap:12px;
-      cursor:pointer;
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0));
-    }
-    .dayHeader h2{margin:0;font-size:17px}
-    .vibe{margin:4px 0 0;color:var(--muted);font-size:13px}
-    .rightMeta{ text-align:right; min-width:160px; color:var(--muted); font-size:12px; }
-    .badge{
-      display:inline-flex;align-items:center;gap:6px;
-      padding:6px 9px;border-radius:999px;
-      background:rgba(124,92,255,.16);
-      border:1px solid rgba(124,92,255,.22);
-      color:#dfe8ff;
-      font-size:12px;
-      font-weight:800;
-    }
-    .badge.today{
-      background:var(--td);
-      border-color:var(--tdb);
-    }
-    .badge.travel{
-      background:rgba(255,176,32,.14);
-      border-color:rgba(255,176,32,.26);
-    }
-
-    .content{ padding:12px 14px 14px; border-top:1px solid rgba(255,255,255,.06); display:none; }
-    .day.open .content{display:block}
-
-    .grid{
-      display:grid;
-      grid-template-columns: 1.05fr .95fr;
-      gap:14px;
-    }
-    @media (max-width:920px){ .grid{grid-template-columns:1fr} }
-
-    .card{
-      background:rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.07);
-      border-radius:16px;
-      overflow:hidden;
-    }
-    .img{ width:100%; height:190px; object-fit:cover; display:block; filter:saturate(1.05) contrast(1.02); }
-    .cardBody{ padding:12px; }
-    .cardTitle{ margin:0 0 4px; font-size:14px; }
-    .cardHint{ margin:0; color:var(--muted); font-size:12px; }
-
-    .pillRow{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
-    .pill{
-      background:var(--chip);
-      border:1px solid rgba(255,255,255,.07);
-      color:#d6e0f5;
-      border-radius:999px;
-      padding:7px 10px;
-      font-size:12px;
-    }
-    .pill.ok{background:var(--ok); border-color:var(--okb)}
-    .pill.warn{background:rgba(255,176,32,.12); border-color:rgba(255,176,32,.24)}
-
-    /* Infographic route legs */
-    .route{ margin-top:10px; display:grid; gap:10px; }
-    .leg{
-      background:rgba(0,0,0,.18);
-      border:1px solid rgba(255,255,255,.06);
-      border-radius:16px;
-      padding:12px;
-    }
-    .fromto{
-      display:flex; gap:10px; align-items:center; flex-wrap:wrap;
-      font-weight:900;
-      letter-spacing:.2px;
-    }
-    .arrow{
-      width:26px;height:26px;border-radius:10px;
-      display:inline-grid;place-items:center;
-      background:linear-gradient(135deg, rgba(124,92,255,.32), rgba(24,195,126,.20));
-      border:1px solid rgba(255,255,255,.10);
-      font-size:14px;
-    }
-    .meta{
-      display:flex;gap:10px;flex-wrap:wrap;
-      color:var(--muted);
-      font-size:12px;
-      margin-top:6px;
-    }
-    .meta b{color:#d8e5ff}
-    .legNote{color:var(--muted);font-size:12px;margin-top:6px}
-
-    /* Timeline items */
-    .timeline{ display:grid; gap:10px; margin-top:10px; }
-    .item{
-      display:flex; gap:10px; align-items:flex-start;
-      border:1px solid rgba(255,255,255,.06);
-      background:rgba(255,255,255,.03);
-      border-radius:14px;
-      padding:10px 10px;
-    }
-    .time{
-      min-width:82px;
-      padding:6px 8px;
-      border-radius:12px;
-      background:rgba(124,92,255,.12);
-      border:1px solid rgba(124,92,255,.20);
-      font-weight:900;
-      font-size:12px;
-      text-align:center;
-      color:#dfe8ff;
-    }
-    .item h4{margin:0 0 2px;font-size:13px}
-    .item p{margin:0;color:var(--muted);font-size:12px}
-    .tagRow{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
-    .tag{
-      font-size:11px;
-      padding:6px 8px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.08);
-      background:rgba(255,255,255,.04);
-      color:var(--muted);
-    }
-
-    /* Notes */
-    textarea{
-      width:100%;
-      min-height:120px;
-      border-radius:14px;
-      padding:12px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(0,0,0,.20);
-      color:var(--text);
-      outline:none;
-      resize:vertical;
-      font-size:13px;
-      line-height:1.5;
-    }
-    .tiny{color:var(--muted);font-size:11px;margin-top:8px}
-    .footer{
-      margin:18px 0 6px;
-      color:var(--muted);
-      font-size:12px;
-      text-align:center;
-    }
-
-    /* Floating bar */
-    .floatBar{
-      position:fixed;
-      left:0; right:0; bottom:12px;
-      display:flex; justify-content:center;
-      pointer-events:none;
-      z-index:50;
-    }
-    .floatInner{
-      pointer-events:auto;
-      display:flex; gap:10px; align-items:center;
-      padding:10px;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(17,24,38,.75);
-      backdrop-filter: blur(10px);
-      box-shadow: var(--shadow);
-    }
-  </style>
+    </style>
 </head>
-
 <body>
-  <div class="wrap">
 
     <div class="hero">
-      <h1>🗺️ Pune + Mahabaleshwar Escape</h1>
-      <p class="sub">Abhishek & Annyesha • Fri, Feb 13 → Tue, Feb 17, 2026 • Timeline + infographic travel legs + food recos.</p>
-
-      <div class="chips" id="chips"></div>
-
-      <div class="btnRow">
-        <button class="btn primary" id="jumpToday">📍 Jump to Today</button>
-        <button class="btn" id="expandAll">📂 Expand all</button>
-        <button class="btn ghost" id="collapseAll">🧳 Collapse all</button>
-      </div>
-
-      <div class="tiny">Tip: “Open Directions” gives real-time travel duration based on traffic. The page shows your planned depart/arrive schedule.</div>
-    </div>
-
-    <div class="topGrid">
-      <div class="miniCard">
-        <h3>🎒 Quick Packing</h3>
-        <p>Light jacket for Mahabaleshwar evenings, power bank, water bottle, sunglasses, basic meds, and some cash for market stalls.</p>
-      </div>
-      <div class="miniCard">
-        <h3>📝 Notes (autosaved on this phone)</h3>
-        <textarea id="notes" placeholder="Anything to remember…"></textarea>
-        <div class="tiny" id="saveHint">Saved locally on this device.</div>
-      </div>
-    </div>
-
-    <div class="sectionTitle">Itinerary</div>
-    <div id="days"></div>
-
-    <div class="footer">Built as a single-file itinerary • Works offline (except images + Maps links)</div>
-  </div>
-
-  <div class="floatBar">
-    <div class="floatInner">
-      <button class="btn primary" id="floatToday">📍 Today</button>
-      <a class="btn" href="#notesAnchor">📝 Notes</a>
-    </div>
-  </div>
-
-  <script>
-    // ---------- DATA (edit here) ----------
-    const TRIP = {
-      title: "Pune + Mahabaleshwar Escape",
-      travelers: ["Abhishek", "Annyesha"],
-      dateRange: "Feb 13–17, 2026",
-      chips: [
-        "🛫 6E 933 (DEL→PNQ) • 6E 2278 (PNQ→DEL)",
-        "🏨 Pune: Treebo Trend Cocostay (Hadapsar)",
-        "🏔️ Mahabaleshwar: Regenta Place Green Leaf",
-        "🚌 Neeta Travels: Pune ↔ Mahabaleshwar"
-      ],
-      // Fixed “today” for this trip so the page can highlight correctly on the trip dates.
-      // If you want dynamic real-today later, change useTripClock = false.
-      useTripClock: true,
-      tripClockDateISO: "2026-02-13" // set to tomorrow’s date for “Jump to Today” during trip
-    };
-
-    const DAYS = [
-      {
-        id: "2026-02-13",
-        title: "Fri, Feb 13 • Arrival in Pune",
-        vibe: "Landing and settling in.",
-        badge: "Night Travel",
-        heroImg: "https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=1400&q=70",
-        items: [
-          { time:"20:25", title:"Flight departs Delhi (DEL)", desc:"IndiGo 6E 933", tags:["flight","check-in"] },
-          { time:"22:40", title:"Arrive Pune (PNQ)", desc:"Proceed to baggage + cab pickup", tags:["arrival"] },
-          { time:"23:30", title:"Check-in (Hadapsar)", desc:"Treebo Trend Cocostay", tags:["hotel"] }
-        ],
-        legs: [
-          {
-            from:"Pune Airport (PNQ)",
-            to:"Hadapsar (Hotel)",
-            mode:"Cab",
-            depart:"22:55",
-            arrive:"23:30",
-            duration:"~25–35 min",
-            distance:"~12 km",
-            note:"Late night: cab is easiest. Keep hotel address ready.",
-            maps:"https://www.google.com/maps/dir/?api=1&origin=Pune%20Airport%20(PNQ)&destination=Hadapsar%2C%20Pune&travelmode=driving"
-          }
-        ],
-        food: [
-          { label:"Snack", text:"Quick airport snack + water (keep it light)" }
-        ]
-      },
-
-      {
-        id: "2026-02-14",
-        title: "Sat, Feb 14 • Exploring Pune",
-        vibe: "History, romance, and city lights.",
-        badge: "Full Day",
-        heroImg: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=1400&q=70",
-        items: [
-          { time:"10:30", title:"Aga Khan Palace", desc:"Italian arches + serene lawns", tags:["history","photos"] },
-          { time:"13:00", title:"Lunch", desc:"Durvankur (thali) OR cafés in Koregaon Park", tags:["food"] },
-          { time:"15:30", title:"Mastani Lake + Dive Ghat (sunset)", desc:"Viewpoint stop for panoramic city look", tags:["sunset","scenic"] },
-          { time:"20:00", title:"Dinner + Movie", desc:"Amanora Mall / Seasons Mall (Hadapsar)", tags:["dinner","valentine"] }
-        ],
-        legs: [
-          {
-            from:"Hadapsar (Hotel)",
-            to:"Aga Khan Palace",
-            mode:"Cab/Auto",
-            depart:"10:00",
-            arrive:"10:25",
-            duration:"~18–25 min",
-            distance:"~11 km",
-            note:"Leave earlier if weekend traffic builds up.",
-            maps:"https://www.google.com/maps/dir/?api=1&origin=Hadapsar%2C%20Pune&destination=Aga%20Khan%20Palace%2C%20Pune&travelmode=driving"
-          },
-          {
-            from:"Aga Khan Palace",
-            to:"Koregaon Park (lunch area)",
-            mode:"Cab/Auto",
-            depart:"12:45",
-            arrive:"13:00",
-            duration:"~10–20 min",
-            distance:"~4–7 km",
-            note:"Pick one lunch spot and stick to it to save time.",
-            maps:"https://www.google.com/maps/dir/?api=1&origin=Aga%20Khan%20Palace%2C%20Pune&destination=Koregaon%20Park%2C%20Pune&travelmode=driving"
-          },
-          {
-            from:"Koregaon Park",
-            to:"Mastani Lake area",
-            mode:"Cab",
-            depart:"14:45",
-            arrive:"15:30",
-            duration:"~45–75 min",
-            distance:"~22 km (approx)",
-            note:"Start by 2:45 PM to protect sunset time.",
-            maps:"https://www.google.com/maps/search/?api=1&query=Mastani%20Lake%20Pune"
-          },
-          {
-            from:"Mastani Lake area",
-            to:"Hadapsar (Malls)",
-            mode:"Cab",
-            depart:"18:30",
-            arrive:"19:30",
-            duration:"~45–75 min",
-            distance:"varies",
-            note:"Traffic can spike; keep buffer for dinner timing.",
-            maps:"https://www.google.com/maps/search/?api=1&query=Seasons%20Mall%20Hadapsar"
-          }
-        ],
-        food: [
-          { label:"Lunch reco", text:"Durvankur (Maharashtrian thali) OR Koregaon Park café hop" },
-          { label:"Dinner reco", text:"Amanora / Seasons Mall (easy + movie-friendly)" }
-        ]
-      },
-
-      {
-        id: "2026-02-15",
-        title: "Sun, Feb 15 • Pune → Mahabaleshwar",
-        vibe: "Leaving the city for the clouds.",
-        badge: "Bus Day",
-        heroImg: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1400&q=70",
-        items: [
-          { time:"10:15", title:"Leave hotel", desc:"Head to bus boarding point", tags:["travel","buffer"] },
-          { time:"11:30", title:"Reach boarding point", desc:"Before Navle Bridge, Opp. Hotel Ganga", tags:["bus"] },
-          { time:"11:55", title:"Bus departs", desc:"Neeta Travels to Mahabaleshwar", tags:["bus"] },
-          { time:"15:05", title:"Arrive Mahabaleshwar drop", desc:"Byke Shanti Villa Resort (Main Gate)", tags:["arrival"] },
-          { time:"15:45", title:"Check-in", desc:"Regenta Place Green Leaf", tags:["hotel"] },
-          { time:"18:00", title:"Venna Lake (sunset)", desc:"Boat ride + snacks", tags:["sunset","activity"] }
-        ],
-        legs: [
-          {
-            from:"Hadapsar (Hotel)",
-            to:"Navle Bridge (Boarding)",
-            mode:"Cab",
-            depart:"10:15",
-            arrive:"11:05",
-            duration:"~35–55 min",
-            distance:"~9–16 km",
-            note:"Sunday mornings can still have traffic; leave with buffer.",
-            maps:"https://www.google.com/maps/dir/?api=1&origin=Hadapsar%2C%20Pune&destination=Navle%20Bridge%2C%20Pune&travelmode=driving"
-          },
-          {
-            from:"Navle Bridge (Pune)",
-            to:"Mahabaleshwar (Drop)",
-            mode:"Bus",
-            depart:"11:55",
-            arrive:"15:05",
-            duration:"~3h 10m (scheduled)",
-            distance:"~117 km",
-            note:"Ghats near end. Keep water + light snacks.",
-            maps:"https://www.google.com/maps/dir/?api=1&origin=Navle%20Bridge%2C%20Pune&destination=Mahabaleshwar%2C%20Maharashtra&travelmode=driving"
-          },
-          {
-            from:"Regenta (Hotel)",
-            to:"Venna Lake",
-            mode:"Cab/Walk (depending)",
-            depart:"17:30",
-            arrive:"18:00",
-            duration:"~10–20 min",
-            distance:"~3–6 km (area dependent)",
-            note:"Sunset hours can get crowded — go a bit early.",
-            maps:"https://www.google.com/maps/search/?api=1&query=Venna%20Lake%20Mahabaleshwar"
-          }
-        ],
-        food: [
-          { label:"Snack reco", text:"Carry bus snacks (banana / chips / water) + avoid heavy meals pre-ghats" }
-        ]
-      },
-
-      {
-        id: "2026-02-16",
-        title: "Mon, Feb 16 • Strawberry Fields & Peak Views",
-        vibe: "Scenic viewpoints and local treats.",
-        badge: "Scenic Day",
-        heroImg: "https://images.unsplash.com/photo-1482192505345-5655af888cc4?auto=format&fit=crop&w=1400&q=70",
-        items: [
-          { time:"10:30", title:"Viewpoints circuit", desc:"Arthur’s Seat • Elphinstone Point • Old Mahabaleshwar Temple", tags:["scenic","photos"] },
-          { time:"13:30", title:"Lunch at Mapro Garden", desc:"Grilled sandwich + strawberry with cream", tags:["food","strawberry"] },
-          { time:"16:30", title:"Mahabaleshwar Market", desc:"Leather goods + honey + souvenirs", tags:["shopping"] },
-          { time:"20:00", title:"Dinner", desc:"Farmhouse Bistro OR in-house at Regenta", tags:["dinner","chill"] }
-        ],
-        legs: [
-          {
-            from:"Hotel (Regenta area)",
-            to:"Arthur’s Seat",
-            mode:"Cab",
-            depart:"10:00",
-            arrive:"10:30",
-            duration:"~20–40 min",
-            distance:"varies",
-            note:"Do viewpoints earlier for better clarity + light.",
-            maps:"https://www.google.com/maps/search/?api=1&query=Arthur%27s%20Seat%20Mahabaleshwar"
-          },
-          {
-            from:"Viewpoints circuit",
-            to:"Mapro Garden",
-            mode:"Cab",
-            depart:"13:00",
-            arrive:"13:30",
-            duration:"~20–35 min",
-            distance:"~14 km (approx)",
-            note:"Mapro can be crowded — keep 60–90 mins buffer.",
-            maps:"https://www.google.com/maps/dir/?api=1&origin=Venna%20Lake%20Mahabaleshwar&destination=Mapro%20Garden%20Mahabaleshwar&travelmode=driving"
-          },
-          {
-            from:"Mapro Garden",
-            to:"Mahabaleshwar Market",
-            mode:"Cab",
-            depart:"15:45",
-            arrive:"16:30",
-            duration:"~25–45 min",
-            distance:"varies",
-            note:"If tired, skip one stop and keep market time.",
-            maps:"https://www.google.com/maps/search/?api=1&query=Mahabaleshwar%20Market"
-          }
-        ],
-        food: [
-          { label:"Lunch reco", text:"Mapro Garden (sandwich + strawberry & cream)" },
-          { label:"Dinner reco", text:"Farmhouse Bistro (if going out) OR hotel dinner (quiet)" }
-        ]
-      },
-
-      {
-        id: "2026-02-17",
-        title: "Tue, Feb 17 • Return + Loni Kalbhor + Flight",
-        vibe: "One last stop before heading home.",
-        badge: "Travel Day",
-        heroImg: "https://images.unsplash.com/photo-1526779259212-939e64788e3f?auto=format&fit=crop&w=1400&q=70",
-        items: [
-          { time:"10:00", title:"Check-out", desc:"Leave the hotel", tags:["checkout"] },
-          { time:"11:30", title:"Board return bus", desc:"From Byke Shanti Villa Resort area", tags:["bus"] },
-          { time:"15:20", title:"Arrive Pune", desc:"Navle Bridge Vadgaon drop", tags:["arrival"] },
-          { time:"16:30", title:"Stopover", desc:"Loni Kalbhor (meet friends/dinner)", tags:["friends","food"] },
-          { time:"19:30", title:"Leave for airport", desc:"Pune Airport (PNQ)", tags:["buffer"] },
-          { time:"23:15", title:"Flight to Delhi", desc:"IndiGo 6E 2278", tags:["flight"] }
-        ],
-        legs: [
-          {
-            from:"Mahabaleshwar (Boarding)",
-            to:"Pune (Navle Bridge Vadgaon)",
-            mode:"Bus",
-            depart:"11:30",
-            arrive:"15:20",
-            duration:"~3h 50m (scheduled)",
-            distance:"~117 km",
-            note:"Have a light snack on the way to avoid post-bus fatigue.",
-            maps:"https://www.google.com/maps/dir/?api=1&origin=Mahabaleshwar%2C%20Maharashtra&destination=Navle%20Bridge%2C%20Pune&travelmode=driving"
-          },
-          {
-            from:"Navle Bridge Vadgaon",
-            to:"Loni Kalbhor",
-            mode:"Cab",
-            depart:"15:40",
-            arrive:"16:30",
-            duration:"~45–75 min",
-            distance:"traffic dependent",
-            note:"If you’re late, shorten the stopover to protect airport buffer.",
-            maps:"https://www.google.com/maps/dir/?api=1&origin=Navle%20Bridge%2C%20Pune&destination=Loni%20Kalbhor%2C%20Pune&travelmode=driving"
-          },
-          {
-            from:"Loni Kalbhor",
-            to:"Pune Airport (PNQ)",
-            mode:"Cab",
-            depart:"19:30",
-            arrive:"21:00",
-            duration:"~60–90 min",
-            distance:"traffic dependent",
-            note:"Aim early: evening traffic can spike. Better waiting at airport than rushing.",
-            maps:"https://www.google.com/maps/dir/?api=1&origin=Loni%20Kalbhor%2C%20Pune&destination=Pune%20Airport%20(PNQ)&travelmode=driving"
-          }
-        ],
-        food: [
-          { label:"Dinner reco", text:"Eat at Loni Kalbhor (simple, not heavy) then go airport early" }
-        ]
-      }
-    ];
-
-    // ---------- HELPERS ----------
-    const $ = (sel) => document.querySelector(sel);
-    const pad2 = (n) => String(n).padStart(2, "0");
-
-    function getTodayISO(){
-      if(TRIP.useTripClock) return TRIP.tripClockDateISO;
-      // Real current date in local timezone:
-      const d = new Date();
-      return `${d.getFullYear()}-${pad2(d.getMonth()+1)}-${pad2(d.getDate())}`;
-    }
-
-    function makeDayHTML(day, isToday){
-      const badgeClass = isToday ? "badge today" : (day.badge?.toLowerCase().includes("travel") || day.badge?.toLowerCase().includes("bus") ? "badge travel" : "badge");
-
-      const itemsHTML = day.items.map(it => `
-        <div class="item">
-          <div class="time">${it.time}</div>
-          <div>
-            <h4>${it.title}</h4>
-            <p>${it.desc || ""}</p>
-            ${it.tags?.length ? `<div class="tagRow">${it.tags.map(t=>`<span class="tag">${t}</span>`).join("")}</div>` : ""}
-          </div>
+        <div>
+            <h1><i class="fas fa-mountain"></i> Pune & Mahabaleshwar</h1>
+            <p>Abhishek & Annyesha | Feb 13 - 17, 2026</p>
         </div>
-      `).join("");
+    </div>
 
-      const legsHTML = (day.legs || []).map(leg => `
-        <div class="leg">
-          <div class="fromto">
-            ${leg.from} <span class="arrow">→</span> ${leg.to}
-          </div>
-          <div class="meta">
-            <span>🚦 <b>${leg.mode}</b></span>
-            <span>🕒 Depart <b>${leg.depart}</b></span>
-            <span>🕓 Arrive <b>${leg.arrive}</b></span>
-            <span>⏱️ <b>${leg.duration}</b></span>
-            <span>📏 <b>${leg.distance}</b></span>
-          </div>
-          ${leg.note ? `<div class="legNote">${leg.note}</div>` : ""}
-          ${leg.maps ? `<div style="margin-top:10px"><a class="btn" target="_blank" href="${leg.maps}">🗺️ Open Directions</a></div>` : ""}
+    <div class="container">
+
+        <div class="notebook">
+            <h2><i class="fas fa-pen-fancy"></i> Trip Notes</h2>
+            <p style="font-size:0.85rem; color:#888; margin-bottom:10px;">Type below. Notes are auto-saved to your phone.</p>
+            <textarea id="tripNotes" placeholder="Type flight info, driver numbers, or shopping lists here..."></textarea>
+            <div id="saveMsg" class="save-indicator"><i class="fas fa-check-circle"></i> Saved to device</div>
+            
+            <div class="contacts-grid">
+                <a href="tel:+919922882044" class="btn btn-call"><i class="fas fa-taxi"></i> Aryan Tours</a>
+                <a href="tel:+918275928275" class="btn btn-call"><i class="fas fa-car"></i> Taxi Union</a>
+            </div>
         </div>
-      `).join("");
 
-      const foodHTML = (day.food || []).map(f => `
-        <span class="pill ok">🍽️ ${f.label}: ${f.text}</span>
-      `).join("");
-
-      const openByDefault = isToday ? "open" : "";
-      const todayPill = isToday ? `<span class="pill warn">📍 Today</span>` : "";
-
-      return `
-        <section class="day ${openByDefault}" id="day-${day.id}">
-          <div class="dayHeader" data-day="${day.id}">
-            <div>
-              <h2>${day.title}</h2>
-              <div class="vibe">${day.vibe || ""}</div>
-            </div>
-            <div class="rightMeta">
-              <div class="${badgeClass}">${isToday ? "Today" : (day.badge || "Day")}</div>
-            </div>
-          </div>
-
-          <div class="content">
-            <div class="grid">
-              <div class="card">
-                <img class="img" alt="${day.title}" src="${day.heroImg}" />
-                <div class="cardBody">
-                  <h3 class="cardTitle">🗓️ Plan blocks</h3>
-                  <p class="cardHint">Tap the day header to collapse/expand.</p>
-
-                  <div class="pillRow">
-                    ${todayPill}
-                    ${foodHTML}
-                  </div>
-
-                  <div class="timeline">
-                    ${itemsHTML}
-                  </div>
+        <div class="section-title">Friday, Feb 13</div>
+        <div class="card">
+            <div class="card-header"><span>Arrival</span><span>Day 1</span></div>
+            <div class="timeline-item">
+                <div class="time-col">22:40</div>
+                <div class="info-col">
+                    <h3>Land at Pune (PNQ)</h3>
+                    <p>Flight 6E 933. Take a prepaid cab to Hadapsar.</p>
+                    <div class="btn-container">
+                        <a href="https://www.google.com/maps/search/?api=1&query=Pune+Airport" class="btn btn-map"><i class="fas fa-plane-arrival"></i> Airport Map</a>
+                    </div>
                 </div>
-              </div>
-
-              <div class="card">
-                <div class="cardBody">
-                  <h3 class="cardTitle">🧭 Travel Legs (Infographic)</h3>
-                  <p class="cardHint">Planned depart/arrive + baseline duration. “Open Directions” shows real-time.</p>
-
-                  <div class="route">
-                    ${legsHTML || `<div class="leg"><div class="legNote">No travel legs listed for this day.</div></div>`}
-                  </div>
-
-                  <div style="margin-top:12px" id="notesAnchor"></div>
-                </div>
-              </div>
             </div>
-          </div>
-        </section>
-      `;
-    }
+            <div class="timeline-item">
+                <div class="time-col">23:30</div>
+                <div class="info-col">
+                    <h3>Check-in: Treebo Trend Cocostay</h3>
+                    <p>Hadapsar. Keep your ID handy.</p>
+                    <div class="btn-container">
+                        <a href="https://www.google.com/maps/search/?api=1&query=Treebo+Trend+Cocostay+Hadapsar" class="btn btn-map"><i class="fas fa-bed"></i> Hotel Pin</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    // ---------- RENDER ----------
-    const todayISO = getTodayISO();
+        <div class="section-title">Saturday, Feb 14</div>
+        <div class="card">
+            <div class="card-header"><span>The Date Day</span><span>Day 2</span></div>
+            <div class="timeline-item">
+                <div class="time-col">09:30</div>
+                <div class="info-col">
+                    <h3>Breakfast: Treebo</h3>
+                    <p>Relaxed start at the hotel.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-col">11:00</div>
+                <div class="info-col">
+                    <h3>Mastani Lake & Dive Ghat</h3>
+                    <p>Scenic drive for valley views.</p>
+                    <div class="btn-container">
+                        <a href="https://www.google.com/maps/search/?api=1&query=Mastani+Lake+Pune" class="btn btn-map"><i class="fas fa-water"></i> Lake Map</a>
+                    </div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-col">13:30</div>
+                <div class="info-col">
+                    <h3>Lunch: The Daily All Day</h3>
+                    <p>Koregaon Park. Aesthetic vibes & great cocktails.</p>
+                    <div class="btn-container">
+                        <a href="https://www.google.com/maps/search/?api=1&query=The+Daily+All+Day+Pune" class="btn btn-food"><i class="fas fa-utensils"></i> Directions</a>
+                    </div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-col">16:30</div>
+                <div class="info-col">
+                    <h3>Seasons Mall (Movie)</h3>
+                    <p>Hadapsar. Catch a movie & shop.</p>
+                    <div class="btn-container">
+                        <a href="https://www.google.com/maps/search/?api=1&query=Seasons+Mall+Pune" class="btn btn-map"><i class="fas fa-film"></i> Mall</a>
+                    </div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-col">21:00</div>
+                <div class="info-col">
+                    <h3>Dinner: German Bakery</h3>
+                    <p>Koregaon Park. Iconic spot to end the night.</p>
+                    <div class="btn-container">
+                        <a href="https://www.google.com/maps/search/?api=1&query=German+Bakery+Koregaon+Park" class="btn btn-food"><i class="fas fa-coffee"></i> Bakery</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    $("#chips").innerHTML = TRIP.chips.map(c => `<div class="chip">${c}</div>`).join("");
+        <div class="section-title">Sunday, Feb 15</div>
+        <div class="card">
+            <div class="card-header blue"><span>To The Hills</span><span>Day 3</span></div>
+            <div class="timeline-item">
+                <div class="time-col">11:15</div>
+                <div class="info-col">
+                    <h3>Boarding: Navle Bridge</h3>
+                    <p><strong>Neeta Travels (Sleeper)</strong><br>Spot: Opp. Hotel Ganga. Bus departs 11:55 AM.</p>
+                    <div class="btn-container">
+                        <a href="https://www.google.com/maps/search/?api=1&query=Navle+Bridge+Pune" class="btn btn-map"><i class="fas fa-bus"></i> Boarding</a>
+                    </div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-col">15:45</div>
+                <div class="info-col">
+                    <h3>Check-in: Regenta Place</h3>
+                    <p>Green Leaf Resort, Rengadi.</p>
+                    <div class="btn-container">
+                        <a href="https://www.google.com/maps/search/?api=1&query=Regenta+Place+Green+Leaf+Mahabaleshwar" class="btn btn-map"><i class="fas fa-hotel"></i> Hotel</a>
+                    </div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-col">17:30</div>
+                <div class="info-col">
+                    <h3>Venna Lake & Town Bazaar</h3>
+                    <p>Sunset boating followed by shopping at the main market.</p>
+                    <div class="btn-container">
+                        <a href="https://www.google.com/maps/search/?api=1&query=Venna+Lake+Mahabaleshwar" class="btn btn-map"><i class="fas fa-ship"></i> Lake</a>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Mahabaleshwar+Market" class="btn btn-shop"><i class="fas fa-shopping-bag"></i> Market</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    $("#days").innerHTML = DAYS.map(d => makeDayHTML(d, d.id === todayISO)).join("");
+        <div class="section-title">Monday, Feb 16</div>
+        <div class="card">
+            <div class="card-header green"><span>Mahabaleshwar</span><span>Day 4</span></div>
+            <div class="timeline-item">
+                <div class="time-col">10:00</div>
+                <div class="info-col">
+                    <h3>Arthur's Seat & Points</h3>
+                    <p>The "Queen of Points" & Elephant's Head Point.</p>
+                    <div class="btn-container">
+                        <a href="https://www.google.com/maps/search/?api=1&query=Arthur's+Seat+Point+Mahabaleshwar" class="btn btn-map"><i class="fas fa-mountain"></i> Viewpoint</a>
+                    </div>
+                </div>
+            </div>
+            <div class="timeline-item" style="background: #fff5f5;">
+                <div class="time-col">12:30</div>
+                <div class="info-col">
+                    <h3>🍓 Strawberry Picking</h3>
+                    <p>Visit a farm (e.g., Laxmi Strawberry Farm) near Mapro.</p>
+                    <div class="btn-container">
+                        <a href="https://www.google.com/maps/search/?api=1&query=Strawberry+Farm+Mahabaleshwar" class="btn btn-berry"><i class="fas fa-leaf"></i> Find Farms</a>
+                    </div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-col">13:30</div>
+                <div class="info-col">
+                    <h3>Lunch: Mapro Garden</h3>
+                    <p>Wood-fired Pizza & Strawberry Cream.</p>
+                    <div class="btn-container">
+                        <a href="https://www.google.com/maps/search/?api=1&query=Mapro+Garden" class="btn btn-food"><i class="fas fa-pizza-slice"></i> Mapro</a>
+                    </div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-col">20:30</div>
+                <div class="info-col">
+                    <h3>Dinner: Farmhouse Bistro</h3>
+                    <p>Open-air dining with a great vibe.</p>
+                    <div class="btn-container">
+                        <a href="https://www.google.com/maps/search/?api=1&query=Farmhouse+Bistro+Mahabaleshwar" class="btn btn-food"><i class="fas fa-wine-glass"></i> Bistro</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    // ---------- INTERACTIONS ----------
-    // Toggle day open/close
-    document.querySelectorAll(".dayHeader").forEach(h => {
-      h.addEventListener("click", () => {
-        const section = h.closest(".day");
-        section.classList.toggle("open");
-        if(section.classList.contains("open")){
-          section.scrollIntoView({behavior:"smooth", block:"start"});
+        <div class="section-title">Tuesday, Feb 17</div>
+        <div class="card">
+            <div class="card-header red"><span>Return Journey</span><span>Day 5</span></div>
+            <div class="timeline-item">
+                <div class="time-col">11:30</div>
+                <div class="info-col">
+                    <h3>Return Bus</h3>
+                    <p>Boarding: The Byke Shanti Villa. Drop: Navle Bridge (3:20 PM).</p>
+                    <div class="btn-container">
+                        <a href="https://www.google.com/maps/search/?api=1&query=The+Byke+Shanti+Villa" class="btn btn-map"><i class="fas fa-bus"></i> Boarding</a>
+                    </div>
+                </div>
+            </div>
+            <div class="timeline-item" style="background: #fff9db;">
+                <div class="time-col">16:30</div>
+                <div class="info-col">
+                    <div class="highlight">
+                        <h3>📍 Loni Kalbhor Visit</h3>
+                        <p>Visit family/friends. Dinner nearby.</p>
+                        <span class="alert">⚠️ LEAVE BY 7:30 PM SHARP</span>
+                    </div>
+                    <div class="btn-container" style="margin-top:10px;">
+                        <a href="https://www.google.com/maps/search/?api=1&query=Loni+Kalbhor" class="btn btn-map"><i class="fas fa-map-marker-alt"></i> Loni</a>
+                    </div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-col">23:15</div>
+                <div class="info-col">
+                    <h3>Flight to Delhi</h3>
+                    <p>IndiGo 6E 2278.</p>
+                    <div class="btn-container">
+                        <a href="https://www.google.com/maps/search/?api=1&query=Pune+Airport" class="btn btn-map"><i class="fas fa-plane-departure"></i> Airport</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p style="text-align:center; color:#adb5bd; font-size:0.8rem; margin-top:30px; margin-bottom: 20px;">Safe Travels! ✈️</p>
+
+    </div>
+
+    <script>
+        const noteArea = document.getElementById('tripNotes');
+        const saveMsg = document.getElementById('saveMsg');
+
+        // Load saved notes from LocalStorage on page load
+        if(localStorage.getItem('myTripNotes')) {
+            noteArea.value = localStorage.getItem('myTripNotes');
         }
-      });
-    });
 
-    // Expand/collapse all
-    $("#expandAll").addEventListener("click", () => {
-      document.querySelectorAll(".day").forEach(d => d.classList.add("open"));
-    });
-    $("#collapseAll").addEventListener("click", () => {
-      document.querySelectorAll(".day").forEach(d => d.classList.remove("open"));
-    });
-
-    // Jump to Today
-    function jumpToToday(){
-      const el = document.querySelector(`#day-${todayISO}`);
-      if(el){
-        el.classList.add("open");
-        el.scrollIntoView({behavior:"smooth", block:"start"});
-      } else {
-        // fallback: top
-        window.scrollTo({top:0, behavior:"smooth"});
-      }
-    }
-    $("#jumpToday").addEventListener("click", jumpToToday);
-    $("#floatToday").addEventListener("click", jumpToToday);
-
-    // Notes autosave
-    const NOTES_KEY = "pm_trip_notes_v2";
-    const notesEl = $("#notes");
-    const hintEl = $("#saveHint");
-
-    function loadNotes(){
-      const v = localStorage.getItem(NOTES_KEY);
-      if(v) notesEl.value = v;
-    }
-    function saveNotes(){
-      localStorage.setItem(NOTES_KEY, notesEl.value);
-      hintEl.textContent = "Saved ✓";
-      setTimeout(()=>hintEl.textContent="Saved locally on this device.", 900);
-    }
-    loadNotes();
-    notesEl.addEventListener("input", () => {
-      // light debounce
-      window.clearTimeout(window.__noteT);
-      window.__noteT = window.setTimeout(saveNotes, 250);
-    });
-  </script>
+        // Save to LocalStorage whenever the user types
+        noteArea.addEventListener('input', function() {
+            localStorage.setItem('myTripNotes', noteArea.value);
+            
+            // Visual feedback
+            saveMsg.style.opacity = '1';
+            setTimeout(() => { saveMsg.style.opacity = '0'; }, 2000);
+        });
+    </script>
 </body>
 </html>
