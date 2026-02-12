@@ -24,9 +24,9 @@
 
         /* --- HERO SECTION --- */
         .hero {
-            /* Reliable Unsplash Image of Mahabaleshwar/Western Ghats */
+            /* User's Custom Cover Image */
             background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.6)), 
-                        url('https://images.unsplash.com/photo-1626014303757-0fc5868214a1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');
+                        url('https://share.google/d164Hntl7g4Ot9fR7');
             background-size: cover;
             background-position: center;
             height: 260px;
@@ -41,7 +41,7 @@
 
         .container { max-width: 800px; margin: 0 auto; padding: 15px; }
 
-        /* --- INTERACTIVE NOTEBOOK (PERSISTENT) --- */
+        /* --- NOTEBOOK --- */
         .notebook {
             background: var(--card);
             border-radius: 16px;
@@ -64,65 +64,35 @@
             font-size: 0.8rem; color: var(--success); margin-top: 8px; 
             opacity: 0; transition: opacity 0.5s; display: flex; align-items: center; gap: 5px;
         }
-
-        /* --- CONTACTS GRID --- */
-        .contacts-grid {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; padding-top: 15px; border-top: 1px solid #f0f0f0;
-        }
+        .contacts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; padding-top: 15px; border-top: 1px solid #f0f0f0; }
 
         /* --- ITINERARY CARDS --- */
-        .section-title {
-            margin: 30px 0 10px; font-size: 0.85rem; text-transform: uppercase; 
-            letter-spacing: 1.2px; color: var(--text-muted); font-weight: 700;
-        }
-        .card {
-            background: var(--card); border-radius: 16px; 
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04); overflow: hidden; margin-bottom: 15px;
-        }
-        .card-header {
-            padding: 12px 18px; background: #f8f9fa; color: #495057; border-bottom: 1px solid #eee;
-            display: flex; justify-content: space-between; align-items: center; font-weight: 600;
-        }
+        .section-title { margin: 30px 0 10px; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.2px; color: var(--text-muted); font-weight: 700; }
+        .card { background: var(--card); border-radius: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); overflow: hidden; margin-bottom: 15px; }
+        .card-header { padding: 12px 18px; background: #f8f9fa; color: #495057; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; font-weight: 600; }
         .card-header.blue { background: #e3f2fd; color: #0d47a1; }
         .card-header.green { background: #e8f5e9; color: #1b5e20; }
         .card-header.red { background: #ffebee; color: #b71c1c; }
         
-        .timeline-item {
-            padding: 18px; border-bottom: 1px solid #f0f0f0;
-            display: flex; gap: 15px;
-        }
+        .timeline-item { padding: 18px; border-bottom: 1px solid #f0f0f0; display: flex; gap: 15px; }
         .timeline-item:last-child { border-bottom: none; }
-        .time-col { 
-            min-width: 60px; font-weight: 700; color: var(--primary); 
-            font-size: 0.9rem; text-align: right; margin-top: 2px;
-        }
+        .time-col { min-width: 60px; font-weight: 700; color: var(--primary); font-size: 0.9rem; text-align: right; margin-top: 2px; }
         .info-col { flex: 1; }
         .info-col h3 { margin: 0 0 6px; font-size: 1.05rem; color: #212529; }
         .info-col p { margin: 0 0 12px; font-size: 0.95rem; color: #666; line-height: 1.5; }
         
-        /* --- BUTTONS --- */
         .btn-container { display: flex; flex-wrap: wrap; gap: 8px; }
-        .btn {
-            display: inline-flex; align-items: center; padding: 8px 12px; background: #f1f3f5; 
-            color: #495057; text-decoration: none; border-radius: 8px; 
-            font-size: 0.85rem; font-weight: 600; transition: 0.2s;
-        }
+        .btn { display: inline-flex; align-items: center; padding: 8px 12px; background: #f1f3f5; color: #495057; text-decoration: none; border-radius: 8px; font-size: 0.85rem; font-weight: 600; transition: 0.2s; }
         .btn:active { transform: scale(0.98); }
         .btn i { margin-right: 6px; }
-        
         .btn-map { background: #e3f2fd; color: #1976d2; }
         .btn-food { background: #fff3e0; color: #e65100; }
         .btn-call { background: #e8f5e9; color: #2e7d32; width: 100%; justify-content: center; }
         .btn-shop { background: #f3e5f5; color: #7b1fa2; }
         .btn-berry { background: #ffebee; color: #c62828; }
 
-        /* --- HIGHLIGHT BOX --- */
-        .highlight {
-            background: #fff9db; border: 1px dashed #fcc419; 
-            padding: 15px; border-radius: 10px; margin-top: 8px;
-        }
+        .highlight { background: #fff9db; border: 1px dashed #fcc419; padding: 15px; border-radius: 10px; margin-top: 8px; }
         .alert { color: #c92a2a; font-weight: 700; font-size: 0.85rem; display: block; margin-top: 8px; }
-
     </style>
 </head>
 <body>
@@ -141,7 +111,6 @@
             <p style="font-size:0.85rem; color:#888; margin-bottom:10px;">Type below. Notes are auto-saved to your phone.</p>
             <textarea id="tripNotes" placeholder="Type flight info, driver numbers, or shopping lists here..."></textarea>
             <div id="saveMsg" class="save-indicator"><i class="fas fa-check-circle"></i> Saved to device</div>
-            
             <div class="contacts-grid">
                 <a href="tel:+919922882044" class="btn btn-call"><i class="fas fa-taxi"></i> Aryan Tours</a>
                 <a href="tel:+918275928275" class="btn btn-call"><i class="fas fa-car"></i> Taxi Union</a>
@@ -157,7 +126,7 @@
                     <h3>Land at Pune (PNQ)</h3>
                     <p>Flight 6E 933. Take a prepaid cab to Hadapsar.</p>
                     <div class="btn-container">
-                        <a href="https://www.google.com/maps/search/?api=1&query=Pune+Airport" class="btn btn-map"><i class="fas fa-plane-arrival"></i> Airport Map</a>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Pune+Airport" class="btn btn-map"><i class="fas fa-plane-arrival"></i> Airport</a>
                     </div>
                 </div>
             </div>
@@ -165,9 +134,9 @@
                 <div class="time-col">23:30</div>
                 <div class="info-col">
                     <h3>Check-in: Treebo Trend Cocostay</h3>
-                    <p>Hadapsar. Keep your ID handy.</p>
+                    <p>Hadapsar. Base for your first 2 nights.</p>
                     <div class="btn-container">
-                        <a href="https://www.google.com/maps/search/?api=1&query=Treebo+Trend+Cocostay+Hadapsar" class="btn btn-map"><i class="fas fa-bed"></i> Hotel Pin</a>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Treebo+Trend+Cocostay+Hadapsar" class="btn btn-map"><i class="fas fa-bed"></i> Hotel</a>
                     </div>
                 </div>
             </div>
@@ -175,44 +144,51 @@
 
         <div class="section-title">Saturday, Feb 14</div>
         <div class="card">
-            <div class="card-header"><span>Food & Movies</span><span>Day 2</span></div>
+            <div class="card-header"><span>The Date Day</span><span>Day 2</span></div>
             <div class="timeline-item">
-                <div class="time-col">10:30</div>
+                <div class="time-col">09:30</div>
                 <div class="info-col">
-                    <h3>Breakfast: Chirp</h3>
-                    <p>Shivaji Nagar. Great aesthetic and coffee.</p>
+                    <h3>Breakfast: Treebo</h3>
+                    <p>Relaxed start at the hotel.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-col">11:00</div>
+                <div class="info-col">
+                    <h3>Mastani Lake & Dive Ghat</h3>
+                    <p>Beautiful valley views and historic lake.</p>
                     <div class="btn-container">
-                        <a href="https://www.google.com/maps/search/?api=1&query=Chirp+Shivaji+Nagar+Pune" class="btn btn-food"><i class="fas fa-coffee"></i> Chirp</a>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Mastani+Lake+Pune" class="btn btn-map"><i class="fas fa-water"></i> Lake Map</a>
                     </div>
                 </div>
             </div>
             <div class="timeline-item">
                 <div class="time-col">13:30</div>
                 <div class="info-col">
-                    <h3>Lunch: German Bakery</h3>
-                    <p>Koregaon Park. Famous for Kheema Pav & Red Velvet Cake.</p>
+                    <h3>Lunch: The Daily All Day</h3>
+                    <p>Koregaon Park. Aesthetic vibes & great cocktails.</p>
                     <div class="btn-container">
-                        <a href="https://www.google.com/maps/search/?api=1&query=German+Bakery+Koregaon+Park" class="btn btn-food"><i class="fas fa-utensils"></i> German Bakery</a>
+                        <a href="https://www.google.com/maps/search/?api=1&query=The+Daily+All+Day+Pune" class="btn btn-food"><i class="fas fa-utensils"></i> Directions</a>
                     </div>
                 </div>
             </div>
             <div class="timeline-item">
-                <div class="time-col">16:00</div>
+                <div class="time-col">16:30</div>
                 <div class="info-col">
-                    <h3>Mastani Lake & Dive Ghat</h3>
-                    <p>Scenic drive for valley views.</p>
+                    <h3>Seasons Mall (Movie)</h3>
+                    <p>Hadapsar. Catch a movie & shop.</p>
                     <div class="btn-container">
-                        <a href="https://www.google.com/maps/search/?api=1&query=Dive+Ghat+View+Point" class="btn btn-map"><i class="fas fa-camera"></i> Dive Ghat</a>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Seasons+Mall+Pune" class="btn btn-map"><i class="fas fa-film"></i> Mall</a>
                     </div>
                 </div>
             </div>
             <div class="timeline-item">
-                <div class="time-col">20:00</div>
+                <div class="time-col">21:00</div>
                 <div class="info-col">
-                    <h3>Movie: Amanora Mall</h3>
-                    <p>Catch a late show. Hotel is just nearby.</p>
+                    <h3>Dinner: German Bakery</h3>
+                    <p>Koregaon Park. Iconic spot to end the night.</p>
                     <div class="btn-container">
-                        <a href="https://www.google.com/maps/search/?api=1&query=Amanora+Mall+Hadapsar" class="btn btn-map"><i class="fas fa-film"></i> Mall Location</a>
+                        <a href="https://www.google.com/maps/search/?api=1&query=German+Bakery+Koregaon+Park" class="btn btn-food"><i class="fas fa-coffee"></i> Bakery</a>
                     </div>
                 </div>
             </div>
@@ -227,7 +203,7 @@
                     <h3>Boarding: Navle Bridge</h3>
                     <p><strong>Neeta Travels (Sleeper)</strong><br>Spot: Opp. Hotel Ganga. Bus departs 11:55 AM.</p>
                     <div class="btn-container">
-                        <a href="https://www.google.com/maps/search/?api=1&query=Hotel+Ganga+Navle+Bridge+Pune" class="btn btn-map"><i class="fas fa-bus"></i> Boarding Point</a>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Navle+Bridge+Pune" class="btn btn-map"><i class="fas fa-bus"></i> Boarding</a>
                     </div>
                 </div>
             </div>
@@ -237,18 +213,18 @@
                     <h3>Check-in: Regenta Place</h3>
                     <p>Green Leaf Resort, Rengadi.</p>
                     <div class="btn-container">
-                        <a href="https://www.google.com/maps/search/?api=1&query=Regenta+Place+Green+Leaf+Mahabaleshwar" class="btn btn-map"><i class="fas fa-hotel"></i> Hotel Map</a>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Regenta+Place+Green+Leaf+Mahabaleshwar" class="btn btn-map"><i class="fas fa-hotel"></i> Hotel</a>
                     </div>
                 </div>
             </div>
             <div class="timeline-item">
                 <div class="time-col">17:30</div>
                 <div class="info-col">
-                    <h3>Venna Lake & Town Bazaar</h3>
-                    <p>Sunset boating followed by shopping at the main market.</p>
+                    <h3>Venna Lake & Market</h3>
+                    <p>Sunset boating followed by Town Bazaar shopping.</p>
                     <div class="btn-container">
-                        <a href="https://www.google.com/maps/search/?api=1&query=Venna+Lake+Mahabaleshwar" class="btn btn-map"><i class="fas fa-ship"></i> Venna Lake</a>
-                        <a href="https://www.google.com/maps/search/?api=1&query=Mahabaleshwar+Main+Market" class="btn btn-shop"><i class="fas fa-shopping-bag"></i> Market</a>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Venna+Lake+Mahabaleshwar" class="btn btn-map"><i class="fas fa-ship"></i> Lake</a>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Mahabaleshwar+Market" class="btn btn-shop"><i class="fas fa-shopping-bag"></i> Market</a>
                     </div>
                 </div>
             </div>
@@ -260,10 +236,10 @@
             <div class="timeline-item">
                 <div class="time-col">10:00</div>
                 <div class="info-col">
-                    <h3>Arthur's Seat Point</h3>
-                    <p>Spectacular views of the Konkan valley.</p>
+                    <h3>Arthur's Seat & Points</h3>
+                    <p>The "Queen of Points" & Elephant's Head Point.</p>
                     <div class="btn-container">
-                        <a href="https://www.google.com/maps/search/?api=1&query=Arthur+Seat+Point+Mahabaleshwar" class="btn btn-map"><i class="fas fa-mountain"></i> Viewpoint</a>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Arthur's+Seat+Point+Mahabaleshwar" class="btn btn-map"><i class="fas fa-mountain"></i> Viewpoint</a>
                     </div>
                 </div>
             </div>
@@ -271,7 +247,7 @@
                 <div class="time-col">12:30</div>
                 <div class="info-col">
                     <h3>🍓 Strawberry Picking</h3>
-                    <p>Stop at a farm near Mapro (e.g., Laxmi Strawberry Farm).</p>
+                    <p>Visit a farm (e.g., Laxmi Strawberry Farm) near Mapro.</p>
                     <div class="btn-container">
                         <a href="https://www.google.com/maps/search/?api=1&query=Strawberry+Farm+Mahabaleshwar" class="btn btn-berry"><i class="fas fa-leaf"></i> Find Farms</a>
                     </div>
@@ -281,24 +257,13 @@
                 <div class="time-col">13:30</div>
                 <div class="info-col">
                     <h3>Lunch: Mapro Garden</h3>
-                    <p>Must eat: Wood-fired Pizza & Strawberry Cream.</p>
+                    <p>Wood-fired Pizza & Strawberry Cream.</p>
                     <div class="btn-container">
-                        <a href="https://www.google.com/maps/search/?api=1&query=Mapro+Garden+Mahabaleshwar" class="btn btn-food"><i class="fas fa-pizza-slice"></i> Mapro</a>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Mapro+Garden" class="btn btn-food"><i class="fas fa-pizza-slice"></i> Mapro</a>
                     </div>
                 </div>
             </div>
             <div class="timeline-item">
-                <div class="time-col">16:30</div>
-                <div class="info-col">
-                    <h3>Kate's Point & Sunset</h3>
-                    <p>Visit Kate's Point (Elephant Head) then head to Bombay Point for Sunset.</p>
-                    <div class="btn-container">
-                        <a href="https://www.google.com/maps/search/?api=1&query=Kate's+Point+Mahabaleshwar" class="btn btn-map"><i class="fas fa-camera"></i> Kate's Point</a>
-                        <a href="https://www.google.com/maps/search/?api=1&query=Bombay+Point+Mahabaleshwar" class="btn btn-map"><i class="fas fa-sun"></i> Sunset Point</a>
-                    </div>
-                </div>
-            </div>
-             <div class="timeline-item">
                 <div class="time-col">20:30</div>
                 <div class="info-col">
                     <h3>Dinner: Farmhouse Bistro</h3>
@@ -317,9 +282,9 @@
                 <div class="time-col">11:30</div>
                 <div class="info-col">
                     <h3>Return Bus</h3>
-                    <p>Boarding: The Byke Shanti Villa.<br>Drop: Navle Bridge (3:20 PM).</p>
+                    <p>Boarding: The Byke Shanti Villa. Drop: Navle Bridge (3:20 PM).</p>
                     <div class="btn-container">
-                        <a href="https://www.google.com/maps/search/?api=1&query=The+Byke+Shanti+Villa+Mahabaleshwar" class="btn btn-map"><i class="fas fa-bus"></i> Boarding Loc</a>
+                        <a href="https://www.google.com/maps/search/?api=1&query=The+Byke+Shanti+Villa" class="btn btn-map"><i class="fas fa-bus"></i> Boarding</a>
                     </div>
                 </div>
             </div>
@@ -332,7 +297,7 @@
                         <span class="alert">⚠️ LEAVE BY 7:30 PM SHARP</span>
                     </div>
                     <div class="btn-container" style="margin-top:10px;">
-                        <a href="https://www.google.com/maps/search/?api=1&query=Loni+Kalbhor+Pune" class="btn btn-map"><i class="fas fa-map-marker-alt"></i> Loni Location</a>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Loni+Kalbhor" class="btn btn-map"><i class="fas fa-map-marker-alt"></i> Loni</a>
                     </div>
                 </div>
             </div>
@@ -355,17 +320,11 @@
     <script>
         const noteArea = document.getElementById('tripNotes');
         const saveMsg = document.getElementById('saveMsg');
-
-        // Load saved notes from LocalStorage on page load
         if(localStorage.getItem('myTripNotes')) {
             noteArea.value = localStorage.getItem('myTripNotes');
         }
-
-        // Save to LocalStorage whenever the user types
         noteArea.addEventListener('input', function() {
             localStorage.setItem('myTripNotes', noteArea.value);
-            
-            // Visual feedback
             saveMsg.style.opacity = '1';
             setTimeout(() => { saveMsg.style.opacity = '0'; }, 2000);
         });
