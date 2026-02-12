@@ -3,65 +3,172 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Mahabaleshwar Escape 🍓</title>
+    <title>Pune & Mahabaleshwar Ultimate Guide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #fdfaf6; color: #2d3436; }
-        .header { background: #d63031; color: white; padding: 40px 20px; text-align: center; }
-        .card { background: white; margin: 15px; padding: 20px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-        .time { color: #d63031; font-weight: bold; font-size: 0.9rem; text-transform: uppercase; }
-        h2 { margin: 10px 0; color: #2d5a27; }
-        .icon-row { display: flex; align-items: center; gap: 10px; margin: 10px 0; font-size: 0.9rem; }
-        .btn { display: inline-block; padding: 10px 20px; background: #2d5a27; color: white; text-decoration: none; border-radius: 25px; margin-top: 10px; }
-        .tag { background: #ffeaa7; padding: 2px 8px; border-radius: 5px; font-size: 0.8rem; }
+        :root { --p-green: #27ae60; --s-blue: #2980b9; --accent-red: #e74c3c; --bg: #f4f7f6; --card: #ffffff; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: var(--bg); color: #2c3e50; margin: 0; padding: 0; line-height: 1.6; }
+        .hero { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1621252179027-94459d278660?auto=format&fit=crop&w=1200&q=80');
+                background-size: cover; background-position: center; color: white; padding: 80px 20px; text-align: center; }
+        .container { max-width: 900px; margin: -40px auto 40px; padding: 0 20px; }
+        .day-card { background: var(--card); border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-bottom: 30px; overflow: hidden; }
+        .day-header { background: var(--p-green); color: white; padding: 20px; display: flex; justify-content: space-between; align-items: center; }
+        .timeline { padding: 20px; position: relative; }
+        .item { border-left: 3px solid #eee; margin-left: 20px; padding: 0 0 30px 30px; position: relative; }
+        .item::before { content: ''; position: absolute; left: -11px; top: 5px; width: 16px; height: 16px; background: white; border: 3px solid var(--p-green); border-radius: 50%; }
+        .time { font-weight: bold; color: var(--accent-red); font-size: 0.9rem; display: block; margin-bottom: 5px; }
+        .btn-link { display: inline-flex; align-items: center; gap: 8px; padding: 8px 15px; border-radius: 20px; font-size: 0.85rem; text-decoration: none; margin-top: 10px; margin-right: 10px; }
+        .map-btn { background: #eef2f7; color: var(--s-blue); border: 1px solid var(--s-blue); }
+        .food-btn { background: #fff5f5; color: var(--accent-red); border: 1px solid var(--accent-red); }
+        .guide-box { background: #fff9db; border-radius: 8px; padding: 15px; margin-top: 15px; font-size: 0.9rem; border-left: 5px solid #f1c40f; }
+        .tag { background: #eee; padding: 3px 10px; border-radius: 5px; font-size: 0.75rem; font-weight: bold; }
     </style>
 </head>
 <body>
 
-<div class="header">
-    <h1>Pune & Mahabaleshwar Trip</h1>
-    <p>Feb 13 - Feb 17, 2026 | For Abhishek & Annyesha</p>
+<div class="hero">
+    <h1>🏔️ The Abhishek & Annyesha Getaway</h1>
+    <p>February 13 – February 17, 2026</p>
 </div>
 
-<div class="card">
-    <div class="time">Friday, Feb 13 • Arrival</div>
-    <h2>✈️ Welcome to Pune</h2>
-    <div class="icon-row">🕒 20:25 → 22:40 | Flight 6E 933</div>
-    <p>Landing at PNQ. Head straight to your stay in Hadapsar.</p>
-    <span class="tag">Stay: Treebo Trend Cocostay</span>
-</div>
+<div class="container">
 
-<div class="card">
-    <div class="time">Saturday, Feb 14 • Exploration</div>
-    <h2>🏰 Culture & Sunset</h2>
-    <p>Morning: Aga Khan Palace. Afternoon: Drive to <strong>Mastani Lake</strong> via Dive Ghat.</p>
-    <p><strong>Dinner:</strong> Seasons Mall Courtyard (Valentine's Vibes!)</p>
-</div>
+    <div class="day-card">
+        <div class="day-header"><span>DAY 1: Arrival in Pune</span><span>Feb 13</span></div>
+        <div class="timeline">
+            <div class="item">
+                <span class="time">22:40 (ETA)</span>
+                <strong>Arrive at Pune Airport (PNQ)</strong>
+                <p>Transfer to your hotel via pre-booked cab or Uber.</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Pune+Airport" class="btn-link map-btn"><i class="fas fa-location-arrow"></i> PNQ Airport</a>
+            </div>
+            <div class="item">
+                <span class="time">23:30 (ETA)</span>
+                <strong>Check-in: Treebo Trend Cocostay</strong>
+                <p>Base for your Pune exploration.</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Treebo+Trend+Cocostay+Hadapsar" class="btn-link map-btn"><i class="fas fa-hotel"></i> Hotel Location</a>
+            </div>
+        </div>
+    </div>
 
-<div class="card">
-    <div class="time">Sunday, Feb 15 • Journey</div>
-    <h2>🚌 The Mountain Road</h2>
-    <div class="icon-row">📍 Boarding: Opp. Hotel Ganga (Navle Bridge)</div>
-    <div class="icon-row">🕒 11:55 AM (Reporting 11:25 AM)</div>
-    <p>Bus drops you at The Byke Shanti Villa at 3:05 PM.</p>
-    <span class="tag">Stay: Regenta Place Green Leaf</span>
-</div>
+    <div class="day-card">
+        <div class="day-header"><span>DAY 2: Pune Sightseeing</span><span>Feb 14</span></div>
+        <div class="timeline">
+            <div class="item">
+                <span class="time">10:30 AM</span>
+                <strong>Aga Khan Palace</strong>
+                <p>Historical landmark with beautiful architecture.</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Aga+Khan+Palace+Pune" class="btn-link map-btn"><i class="fas fa-map"></i> View on Map</a>
+            </div>
+            <div class="item">
+                <span class="time">1:30 PM</span>
+                <strong>Lunch: Blue Nile</strong>
+                <p>Famous for authentic Biryani and North Indian cuisine.</p>
+                <a href="https://www.swiggy.com/city/pune/blue-nile-camp-rest5107" class="btn-link food-btn"><i class="fas fa-utensils"></i> Blue Nile Menu</a>
+            </div>
+            <div class="item">
+                <span class="time">3:30 PM - 6:30 PM</span>
+                <strong>Mastani Lake & Dive Ghat Viewpoint</strong>
+                <p>Enjoy a scenic drive through the ghats for a panoramic city view.</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Dive+Ghat+View+Point" class="btn-link map-btn"><i class="fas fa-sun"></i> Dive Ghat</a>
+                <a href="https://www.google.com/maps/search/?api=1&query=Mastani+Lake+Pune" class="btn-link map-btn"><i class="fas fa-water"></i> Mastani Lake</a>
+            </div>
+            <div class="item">
+                <span class="time">8:00 PM</span>
+                <strong>Dinner & Shopping: Amanora/Seasons Mall</strong>
+                <p>Great outdoor vibes for a Valentine's night out.</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Amanora+Mall+Pune" class="btn-link map-btn">Amanora Mall</a>
+                <a href="https://www.google.com/maps/search/?api=1&query=Seasons+Mall+Pune" class="btn-link map-btn">Seasons Mall</a>
+            </div>
+        </div>
+    </div>
 
-<div class="card">
-    <div class="time">Monday, Feb 16 • Sightseeing</div>
-    <h2>🍓 Strawberry Heaven</h2>
-    <p>Morning: Arthur's Seat & Old Mahabaleshwar. Afternoon: <strong>Mapro Garden</strong> for wood-fired pizza.</p>
-    <p><strong>Must Do:</strong> Sunset boating at Venna Lake.</p>
-</div>
+    <div class="day-card">
+        <div class="day-header" style="background:var(--s-blue)"><span>DAY 3: To Mahabaleshwar</span><span>Feb 15</span></div>
+        <div class="timeline">
+            <div class="item">
+                <span class="time">11:15 AM (ETA)</span>
+                <strong>Arrive at Navle Bridge Boarding Point</strong>
+                <p>Reporting point: Opposite Hotel Ganga, Navle Bridge.</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Navle+Bridge+Pune" class="btn-link map-btn"><i class="fas fa-bus"></i> Boarding Point</a>
+            </div>
+            <div class="item">
+                <span class="time">11:55 AM (ETD)</span>
+                <strong>Bus Departure (Neeta Travels)</strong>
+                <p>Comfortable sleeper bus journey to the hills.</p>
+                <span class="tag">Arrival: 3:05 PM</span>
+            </div>
+            <div class="item">
+                <span class="time">3:45 PM (ETA)</span>
+                <strong>Check-in: Regenta Place Green Leaf</strong>
+                <p>Settle into your room in the Rengadi hills.</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Regenta+Place+Green+Leaf+Mahabaleshwar" class="btn-link map-btn"><i class="fas fa-bed"></i> Hotel Map</a>
+            </div>
+        </div>
+    </div>
 
-<div class="card">
-    <div class="time">Tuesday, Feb 17 • Return</div>
-    <h2>🏙️ Back to the City</h2>
-    <div class="icon-row">🚌 11:30 AM | Boarding: Byke Shanti Villa</div>
-    <p>Drops at Navle Bridge at 3:20 PM. Spend the evening in Loni Kalbhor.</p>
-    <div class="icon-row">✈️ 23:15 | Flight 6E 2278 back to Delhi</div>
-</div>
+    <div class="day-card">
+        <div class="day-header"><span>DAY 4: Hill Station Bliss</span><span>Feb 16</span></div>
+        <div class="timeline">
+            <div class="item">
+                <span class="time">10:30 AM</span>
+                <strong>Arthur's Seat</strong>
+                <p>The "Queen of Points" with dramatic valley views.</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Arthur's+Seat+Mahabaleshwar" class="btn-link map-btn">View Point</a>
+            </div>
+            <div class="item">
+                <span class="time">1:30 PM</span>
+                <strong>Lunch: Mapro Garden</strong>
+                <p>Mandatory stop for Grilled Sandwiches and Strawberry Cream.</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Mapro+Garden+Mahabaleshwar" class="btn-link map-btn">Mapro Location</a>
+            </div>
+            <div class="item">
+                <span class="time">5:30 PM</span>
+                <strong>Venna Lake Boating</strong>
+                <p>Perfect for a sunset stroll or a quiet boat ride.</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Venna+Lake+Mahabaleshwar" class="btn-link map-btn">Lake Pin</a>
+            </div>
+            <div class="item">
+                <span class="time">8:00 PM</span>
+                <strong>Dinner: Farmhouse Bistro</strong>
+                <p>Scenic rooftop Italian dining.</p>
+                <a href="https://www.justdial.com/Mahabaleshwar/Farmhouse-Bistro/9999P2168-2168-180322154600-T2R8_BZDET" class="btn-link food-btn"><i class="fas fa-star"></i> Bistro Menu</a>
+            </div>
+        </div>
+    </div>
 
-<p style="text-align: center; color: #636e72; font-size: 0.8rem; padding-bottom: 20px;">Safe travels! 🎒</p>
+    <div class="day-card" style="border-bottom: 5px solid var(--accent-red)">
+        <div class="day-header" style="background:var(--accent-red)"><span>DAY 5: Loni & Return</span><span>Feb 17</span></div>
+        <div class="timeline">
+            <div class="item">
+                <span class="time">11:30 AM (ETD)</span>
+                <strong>Bus Boarding: The Byke Shanti Villa</strong>
+                <p>Main gate, Mahabaleshwar.</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=The+Byke+Select+Shanti+Villa+Mahabaleshwar" class="btn-link map-btn">Boarding Point</a>
+            </div>
+            <div class="item" style="background: #fffcf0; border-radius: 10px; padding: 15px;">
+                <span class="time">4:30 PM - 7:30 PM</span>
+                <strong>📍 HIGHLIGHT: Loni Kalbhor Visit</strong>
+                <p>Spend your evening meeting family/friends in Loni.</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Loni+Kalbhor+Pune" class="btn-link map-btn"><i class="fas fa-map-pin"></i> Loni Location</a>
+                <div class="guide-box">
+                    <strong>Dinner Rec:</strong> Hotel Vivanta or Spicy Red Chilly (near MIT College).
+                </div>
+            </div>
+            <div class="item">
+                <span class="time">21:15 (Reporting)</span>
+                <strong>Reach Pune Airport</strong>
+                <p>Ensure you leave Loni by 7:30 PM to beat traffic.</p>
+            </div>
+            <div class="item">
+                <span class="time">23:15 (ETD)</span>
+                <strong>Flight 6E 2278 to Delhi</strong>
+                <p>Final flight home. Arrives DEL at 01:30 (+1 day).</p>
+            </div>
+        </div>
+    </div>
+
+</div>
 
 </body>
 </html>
