@@ -60,15 +60,27 @@
 
         .container { max-width: 800px; margin: 0 auto; padding: 0 15px; }
 
-        /* --- NOTEBOOK --- */
+        /* --- NOTEBOOK (UPDATED: Bigger & Collapsible) --- */
         .notebook {
-            background: var(--card); border-radius: 12px; padding: 20px;
+            background: var(--card); border-radius: 12px; 
             margin-bottom: 25px; box-shadow: var(--shadow); border-left: 5px solid var(--accent);
+            overflow: hidden; transition: 0.3s;
         }
-        .notebook h2 { margin: 0 0 10px; font-size: 1.1rem; display: flex; align-items: center; gap: 8px; }
+        .notebook-header {
+            padding: 15px 20px; background: white; cursor: pointer;
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .notebook-header h2 { margin: 0; font-size: 1.1rem; display: flex; align-items: center; gap: 8px; }
+        
+        .notebook-content { padding: 20px; display: none; } /* Hidden by default unless active */
+        .notebook.active .notebook-content { display: block; }
+        
         .notebook textarea {
-            width: 100%; height: 80px; border: 1px solid #eee; border-radius: 8px;
-            padding: 10px; font-family: inherit; font-size: 0.95rem; resize: none; background: #fafafa;
+            width: 100%; height: 200px; /* INCREASED HEIGHT */
+            border: 1px solid #eee; border-radius: 8px;
+            padding: 15px; font-family: inherit; font-size: 1rem; resize: vertical; background: #fafafa;
+            line-height: 1.5;
         }
         .notebook textarea:focus { outline: none; border-color: var(--accent); background: white; }
         
@@ -83,8 +95,10 @@
         }
         .day-header h3 { margin: 0; font-size: 1.1rem; color: var(--primary); }
         .day-date { font-size: 0.85rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; }
+        
+        /* Toggle Icons */
         .toggle-icon { transition: 0.3s; color: #ccc; }
-        .day-card.active .toggle-icon { transform: rotate(180deg); color: var(--primary); }
+        .active .toggle-icon { transform: rotate(180deg); color: var(--primary); }
         
         .day-content { display: none; padding: 0; background: #fdfdfd; }
         .day-card.active .day-content { display: block; }
@@ -118,11 +132,11 @@
         
         /* Images in Timeline */
         .loc-img {
-            width: 100%; height: 140px; object-fit: cover; border-radius: 8px;
-            margin-bottom: 10px; display: block;
+            width: 100%; height: 160px; object-fit: cover; border-radius: 8px;
+            margin-bottom: 10px; display: block; background: #eee;
         }
 
-        /* --- TRAVEL LEG (INFOGRAPHIC STYLE) --- */
+        /* --- TRAVEL LEG --- */
         .travel-leg {
             background: #f8f9fa; border-radius: 8px; padding: 12px; margin: 10px 0;
             border: 1px solid #e9ecef; display: flex; align-items: center; justify-content: space-between;
@@ -166,6 +180,8 @@
             background: #fff3cd; border: 1px dashed #ffeeba; padding: 15px;
             border-radius: 8px; margin-top: 10px; color: #856404;
         }
+        
+        .farm-detail { font-size: 0.85rem; color: #555; background: #fff5f5; padding: 10px; border-radius: 8px; margin-top: 5px; border-left: 3px solid #e74c3c; }
 
     </style>
 </head>
@@ -192,12 +208,18 @@
 
     <div class="container">
 
-        <div class="notebook">
-            <h2><i class="fas fa-pen-fancy"></i> Trip Companion</h2>
-            <textarea id="tripNotes" placeholder="Type notes here... (Auto-saves to phone)"></textarea>
-            <div style="margin-top: 10px; display: flex; gap: 10px;">
-                <a href="tel:+919922882044" class="btn"><i class="fas fa-taxi"></i> Aryan Tours</a>
-                <a href="tel:+918275928275" class="btn"><i class="fas fa-car"></i> Taxi Union</a>
+        <div class="notebook active" id="notebookCard">
+            <div class="notebook-header" onclick="toggleNotebook()">
+                <h2><i class="fas fa-pen-fancy"></i> Trip Companion</h2>
+                <i class="fas fa-chevron-down toggle-icon"></i>
+            </div>
+            <div class="notebook-content">
+                <p style="font-size:0.85rem; color:#888; margin-bottom:10px;">Type below. Notes are auto-saved to your phone.</p>
+                <textarea id="tripNotes" placeholder="Type flight info, hotel confirmation #, driver numbers, or shopping lists here..."></textarea>
+                <div style="margin-top: 15px; display: flex; gap: 10px;">
+                    <a href="tel:+919922882044" class="btn"><i class="fas fa-taxi"></i> Aryan Tours</a>
+                    <a href="tel:+918275928275" class="btn"><i class="fas fa-car"></i> Taxi Union</a>
+                </div>
             </div>
         </div>
 
@@ -213,6 +235,7 @@
                     <div class="item-content">
                         <span class="chip travel">Flight</span>
                         <h4>Land at Pune (PNQ)</h4>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/Pune_Airport_Front_View_2025.jpg" class="loc-img" alt="Airport">
                         <p class="item-desc">IndiGo 6E 933. Prepaid cab to Hadapsar.</p>
                         <a href="https://www.google.com/maps/search/?api=1&query=Pune+Airport" class="btn"><i class="fas fa-map"></i> Airport</a>
                     </div>
@@ -237,7 +260,7 @@
                     <div class="item-content">
                         <span class="chip hotel">Stay</span>
                         <h4>Check-in: Treebo Trend Cocostay</h4>
-                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80" class="loc-img" alt="Hotel">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/77/Entrance_Magarpatta_City.jpg" class="loc-img" alt="Hadapsar Area">
                         <p class="item-desc">Keep ID handy. Relax for the night.</p>
                         <a href="https://www.google.com/maps/search/?api=1&query=Treebo+Trend+Cocostay+Hadapsar" class="btn"><i class="fas fa-bed"></i> Map</a>
                     </div>
@@ -257,7 +280,7 @@
                     <div class="item-content">
                         <span class="chip view">Viewpoint</span>
                         <h4>Mastani Lake & Dive Ghat</h4>
-                        <img src="https://images.unsplash.com/photo-1621252179027-94459d278660?auto=format&fit=crop&w=600&q=80" class="loc-img" alt="Lake">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Mastani_Lake_05.JPG" class="loc-img" alt="Lake">
                         <p class="item-desc">Scenic drive. Great valley views.</p>
                         <a href="https://www.google.com/maps/search/?api=1&query=Mastani+Lake+Pune" class="btn"><i class="fas fa-map-marker-alt"></i> Lake</a>
                     </div>
@@ -268,7 +291,7 @@
                     <div class="item-content">
                         <span class="chip food">Lunch</span>
                         <h4>The Daily All Day</h4>
-                        <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=600&q=80" class="loc-img" alt="Cafe">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/23/Koregaon_park_plaza1.jpg" class="loc-img" alt="Koregaon Park">
                         <p class="item-desc">Koregaon Park. Aesthetic vibes & cocktails.</p>
                         <a href="https://www.google.com/maps/search/?api=1&query=The+Daily+All+Day+Pune" class="btn"><i class="fas fa-utensils"></i> Navigate</a>
                     </div>
@@ -293,6 +316,7 @@
                     <div class="item-content">
                         <span class="chip view">Activity</span>
                         <h4>Seasons Mall (Movie)</h4>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Seasons_Mall%2C_Pune_02.jpg" class="loc-img" alt="Seasons Mall">
                         <p class="item-desc">Catch a movie & shop.</p>
                     </div>
                 </div>
@@ -321,6 +345,7 @@
                     <div class="item-content">
                         <span class="chip warn">Important</span>
                         <h4>Boarding: Navle Bridge</h4>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/1/1f/Mumbai_Pune_Expressway.jpg" class="loc-img" alt="Highway">
                         <p class="item-desc"><strong>Neeta Travels (Sleeper)</strong>. Spot: Opp. Hotel Ganga.</p>
                         <a href="https://www.google.com/maps/search/?api=1&query=Navle+Bridge+Pune" class="btn"><i class="fas fa-bus"></i> Spot</a>
                     </div>
@@ -344,7 +369,7 @@
                     <div class="item-content">
                         <span class="chip hotel">Check-in</span>
                         <h4>Regenta Place Green Leaf</h4>
-                        <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=600&q=80" class="loc-img" alt="Resort">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/3/34/Mahabaleshwar_Road.jpg" class="loc-img" alt="Resort Area">
                         <p class="item-desc">Rengadi. Relax & freshen up.</p>
                         <a href="https://www.google.com/maps/search/?api=1&query=Regenta+Place+Green+Leaf+Mahabaleshwar" class="btn"><i class="fas fa-hotel"></i> Map</a>
                     </div>
@@ -355,7 +380,7 @@
                     <div class="item-content">
                         <span class="chip view">Sunset</span>
                         <h4>Venna Lake & Market</h4>
-                        <img src="https://images.unsplash.com/photo-1544473244-f6895e672d25?auto=format&fit=crop&w=600&q=80" class="loc-img" alt="Boating">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/4/47/Venna_Lake.jpg" class="loc-img" alt="Boating">
                         <p class="item-desc">Boating followed by shopping at Town Bazaar.</p>
                     </div>
                 </div>
@@ -374,7 +399,7 @@
                     <div class="item-content">
                         <span class="chip view">Sightseeing</span>
                         <h4>Arthur's Seat</h4>
-                        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80" class="loc-img" alt="Mountains">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c8/Arthur%27s_Seat_Mahabaleshwar.JPG" class="loc-img" alt="Mountains">
                         <p class="item-desc">Spectacular views of the Konkan valley.</p>
                         <a href="https://www.google.com/maps/search/?api=1&query=Arthur's+Seat+Mahabaleshwar" class="btn"><i class="fas fa-mountain"></i> Map</a>
                     </div>
@@ -385,7 +410,13 @@
                     <div class="item-content">
                         <span class="chip food">Activity</span>
                         <h4>🍓 Strawberry Picking</h4>
-                        <p class="item-desc">Visit a farm near Mapro (e.g., Laxmi Farm).</p>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/07/Strawberry_Farm%2C_Mahabaleshwar_3.jpg" class="loc-img" alt="Strawberries">
+                        <p class="item-desc">Visit a farm on the way to Mapro.</p>
+                        <div class="farm-detail">
+                            <strong>Recommended:</strong> Laxmi Strawberry Farm<br>
+                            <em>(Pesticide-free, Pick-your-own)</em><br>
+                            <a href="https://www.google.com/maps/search/?api=1&query=Strawberry+Farm+Mahabaleshwar" style="color:#e74c3c;">Open Location</a>
+                        </div>
                     </div>
                 </div>
 
@@ -394,7 +425,7 @@
                     <div class="item-content">
                         <span class="chip food">Lunch</span>
                         <h4>Mapro Garden</h4>
-                        <img src="https://images.unsplash.com/photo-1519625346618-20216149497e?auto=format&fit=crop&w=600&q=80" class="loc-img" alt="Mapro">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5b/Mapro_Garden%2C_Mahabaleshwar.jpg" class="loc-img" alt="Mapro">
                         <p class="item-desc">Wood-fired Pizza & Strawberry Cream.</p>
                     </div>
                 </div>
@@ -446,6 +477,7 @@
                         <div class="highlight-box">
                             <span class="chip warn">Priority</span>
                             <h4>📍 Loni Kalbhor Visit</h4>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Mula_Mutha_River_at_Loni_Kalbhor.jpg" class="loc-img" alt="Loni">
                             <p class="item-desc">Visit family/friends. Dinner nearby.</p>
                             <strong style="display:block; margin-top:5px; color:#721c24;">⚠️ LEAVE BY 7:30 PM SHARP</strong>
                             <a href="https://www.google.com/maps/search/?api=1&query=Loni+Kalbhor+Pune" class="btn" style="margin-top:10px;"><i class="fas fa-map"></i> Loni</a>
@@ -472,6 +504,7 @@
                     <div class="item-content">
                         <span class="chip travel">Flight</span>
                         <h4>Flight to Delhi</h4>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/Pune_Airport_Front_View_2025.jpg" class="loc-img" alt="Airport">
                         <p class="item-desc">IndiGo 6E 2278.</p>
                     </div>
                 </div>
@@ -488,12 +521,13 @@
         // Collapsible Days Logic
         function toggleDay(id) {
             const card = document.getElementById(id);
-            const allCards = document.querySelectorAll('.day-card');
-            
-            // Optional: Close others when opening one?
-            // allCards.forEach(c => { if(c !== card) c.classList.remove('active'); });
-
             card.classList.toggle('active');
+        }
+        
+        // Collapsible Notebook Logic
+        function toggleNotebook() {
+            const notebook = document.getElementById('notebookCard');
+            notebook.classList.toggle('active');
         }
 
         // Persistent Notes
@@ -505,16 +539,14 @@
             localStorage.setItem('tripNotes', noteArea.value);
         });
 
-        // Scroll to Today (Mock Logic for Demo)
+        // Scroll to Today
         function scrollToActiveDay() {
-            // In a real app, you'd check new Date()
-            // For now, let's just scroll to Day 2 or open all
             const todayCard = document.getElementById('day2'); 
             todayCard.classList.add('active');
             todayCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
 
-        // Progress Bar on Scroll
+        // Progress Bar
         window.onscroll = function() {
             let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
